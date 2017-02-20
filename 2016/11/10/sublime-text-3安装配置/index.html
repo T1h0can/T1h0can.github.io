@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://t1h0can.github.io">
+  <title>Sublime Text 3安装配置 | T1h0can的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="简介sublime text 3是具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，界面华丽，支持插件拓展(整个软件里我只觉得logo有点碍眼，引用我一个朋友的话：感觉是从一个十年前的软件上拿来的，文末提供kde主题里的logo可以替换)。sublime text 3一直处于测试版状态，最新版本是build 3162，虽说还是测试版，稳定性没得说。相对于vim的难上手，VS等大型IDE的臃肿">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sublime Text 3安装配置">
+<meta property="og:url" content="https://t1h0can.github.io/2016/11/10/sublime-text-3安装配置/index.html">
+<meta property="og:site_name" content="T1h0can的博客">
+<meta property="og:description" content="简介sublime text 3是具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，界面华丽，支持插件拓展(整个软件里我只觉得logo有点碍眼，引用我一个朋友的话：感觉是从一个十年前的软件上拿来的，文末提供kde主题里的logo可以替换)。sublime text 3一直处于测试版状态，最新版本是build 3162，虽说还是测试版，稳定性没得说。相对于vim的难上手，VS等大型IDE的臃肿">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/sublime_web.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/ls_sublime.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/ls_sublime.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/sublime-text_def.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/sublime-text_new.png">
+<meta property="og:updated_time" content="2016-12-18T02:24:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sublime Text 3安装配置">
+<meta name="twitter:description" content="简介sublime text 3是具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，界面华丽，支持插件拓展(整个软件里我只觉得logo有点碍眼，引用我一个朋友的话：感觉是从一个十年前的软件上拿来的，文末提供kde主题里的logo可以替换)。sublime text 3一直处于测试版状态，最新版本是build 3162，虽说还是测试版，稳定性没得说。相对于vim的难上手，VS等大型IDE的臃肿">
+<meta name="twitter:image" content="https://t1h0can.github.io/assets/blogimg/sublime_web.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/blogimg/wifli.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">T1h0can</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/T1h0can" title="github">github</a>
+		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/19950529zz@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">T1h0can</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/blogimg/wifli.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">T1h0can</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/T1h0can" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/19950529zz@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-sublime-text-3安装配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Sublime Text 3安装配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h1><p>sublime text 3是具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，界面华丽，支持插件拓展(整个软件里我只觉得logo有点碍眼，引用我一个朋友的话：感觉是从一个十年前的软件上拿来的，文末提供kde主题里的logo可以替换)。<br>sublime text 3一直处于测试版状态，最新版本是build 3162，虽说还是测试版，稳定性没得说。<br>相对于vim的难上手，VS等大型IDE的臃肿，sublime text 3无疑是最佳选择。</p>
+<a id="more"></a>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a><strong>下载</strong></h1><p><a href="https://www.sublimetext.com/3" target="_blank" rel="external">下载地址</a><br><img src="/assets/blogimg/sublime_web.png" title="sublime_web"><br>如图，sublime官方提供</p>
+<pre><code>- windows(32/64位)的exe和免安装版(portable)
+- mac os(10.7以后可用)的dmg包
+- ubuntu(32/64位)版的deb包
+- tar.bz2压缩包给其他linux发行版
+</code></pre><p>不同系统可以各取所需</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a><strong>安装</strong></h1><p>以下安装方法主要针对非debian系的linux发行版(redhat系,arch系,etc)，当然debian系也是适用的。<br>以X64为例，打开终端</p>
+<blockquote>
+<p>wget <a href="https://download.sublimetext.com/sublime_text_3_build_3126_x64.tar.bz2" target="_blank" rel="external">https://download.sublimetext.com/sublime_text_3_build_3126_x64.tar.bz2</a><br>tar -jxvf sublime_text_3_build_3126_x64.tar.bz2<br>ls sublime_text_3</p>
+</blockquote>
+<p>能看到下图<br><img src="/assets/blogimg/ls_sublime.png" title="ls_sublime"><br>把快捷方式复制到<code>/usr/share/applications</code>下</p>
+<blockquote>
+<p>sudo cp sublime_text_3/sublime_text.desktop /usr/share/applications</p>
+</blockquote>
+<p>把整个文件夹移动到<code>/opt</code>下</p>
+<blockquote>
+<p>sudo mv -r sublime_text_3 /opt/sublime_text</p>
+</blockquote>
+<p>至此安装完毕<br>ps:以后软件有更新的话，下载最新版</p>
+<blockquote>
+<p>sudo rm -rf /opt/sublime_text_3</p>
+</blockquote>
+<p>用上文的<code>tar -jxvf</code>命令解压，<code>sudo mv</code>移动</p>
+<h1 id="注册"><a href="#注册" class="headerlink" title="注册"></a><strong>注册</strong></h1><p>因为闭源收费，会要求注册，虽然可以无限期免费使用，但是会隔三差五弹出提示窗口，比较烦人，编辑窗口上还有一个降低逼格的<code>UNREGISTERED</code>标志。有钱的可以上官网买个注册码支持一下作者软件开发，当然注册码这种东西一搜一堆，复制后在<code>help-&gt;Enter license</code>粘贴就好。</p>
+<h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a><strong>安装插件</strong></h1><p>Sublime Text 最大的特色就是支持大量插件，利用Package Control我们可以很方便地查找、安装和卸载 Sublime Text 中的插件。</p>
+<h2 id="安装Package-Control"><a href="#安装Package-Control" class="headerlink" title="安装Package Control"></a>安装Package Control</h2><p>用<code>ctrl+` </code>打开sublime的控制台(<code>` </code>是键盘上ESC下面的那个键)粘贴下面的代码：<br>    <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import urllib.request,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); <span class="keyword">by</span> = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.<span class="built_in">replace</span>(<span class="string">' '</span>, <span class="string">'%20'</span>)).<span class="built_in">read</span>(); dh = hashlib.sha256(<span class="keyword">by</span>).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> <span class="built_in">open</span>(os.path.join( ipp, pf), <span class="string">'wb'</span> ).<span class="built_in">write</span>(<span class="keyword">by</span>)</div></pre></td></tr></table></figure></p>
+<p>重启Sublime Text 3。如果看到<code>Perferences-&gt;package control</code>这一项，则安装成功。<br>打开<code>package control-&gt;install package</code>就可以搜索安装插件了</p>
+<p>##插件推荐<br><strong>ConvertToUTF8</strong> 支持 GBK, BIG5, EUC-KR, EUC-JP, Shift_JIS 等编码的插件<br><strong>Bracket Highlighter</strong> 用于匹配括号，引号和html标签。对于很长的代码很有用。安装好之后，不需要设置插件会自动生效<br><strong>WakaTime</strong> 可以精确地统计你花在某个项目上多长时间，用的什么语言，关键是适合发票圈装X。<br><strong>YouCompleteMe</strong> 代码补全方面的神器<br><strong>ChineseLocalizations</strong> 汉化补丁<br><strong>SideBarEnhancements</strong> 功能强大的侧边栏<br><strong>terminal</strong> 右键直接打开终端<br><strong>SublimeAStyleFormatter</strong> 格式化c/c++代码，专治各种缩进不齐，强迫症必备<br><strong>colorsublime</strong> 快速安装各种配色风格</p>
+<h1 id="软件图标替换"><a href="#软件图标替换" class="headerlink" title="软件图标替换"></a>软件图标替换</h1><p>还是这张图<br><img src="/assets/blogimg/ls_sublime.png" title="ls_sublime"><br>软件的“low狗”就在Icon文件夹下，喜欢扁平化的人可以用<a href="https://raw.githubusercontent.com/T1h0can/blog_file/master/Icon.tar.gz" target="_blank" rel="external">这里</a>的替换掉。</p>
+<table>
+<thead>
+<tr>
+<th>原版</th>
+<th>kde                               </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/assets/blogimg/sublime-text_def.png" alt="sublime_def"></td>
+<td><img src="/assets/blogimg/sublime-text_new.png" alt="sublime_new">        </td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/10/sublime-text-3安装配置/" class="archive-article-date">
+  	<time datetime="2016-11-10T17:00:11.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/11/11/编译Kali-NetHunter/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          构建Kali-NetHunter教程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/10/DirtyCOW-CVE-2016-5195-测试/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">DirtyCOW(CVE-2016-5195)测试</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 T1h0can
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/unix环境高级编程/" style="font-size: 10px;">unix环境高级编程</a> <a href="/tags/备忘/" style="font-size: 20px;">备忘</a> <a href="/tags/安全/" style="font-size: 13.33px;">安全</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/弈城/" style="font-size: 10px;">弈城</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">T1h0can,&lt;br&gt;&lt;br&gt;在俄罗斯的留学生&lt;br&gt;&lt;br&gt;爱好骑行，&lt;br&gt;各种拉爆，秒天，秒地，秒空气&lt;br&gt;&lt;br&gt;做过GTA的mod，现专心写bug</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

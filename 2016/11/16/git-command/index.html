@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://t1h0can.github.io">
+  <title>Git命令总结备忘 | T1h0can的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Git——著名的开源分布式版本控制系统，2005年由林纳斯发明，最早用于管理linux内核代码。
+常用命令创建新仓库123mkdir dirnamecd dirnamegit init">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git命令总结备忘">
+<meta property="og:url" content="https://t1h0can.github.io/2016/11/16/git-command/index.html">
+<meta property="og:site_name" content="T1h0can的博客">
+<meta property="og:description" content="Git——著名的开源分布式版本控制系统，2005年由林纳斯发明，最早用于管理linux内核代码。
+常用命令创建新仓库123mkdir dirnamecd dirnamegit init">
+<meta property="og:updated_time" content="2016-11-17T18:06:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git命令总结备忘">
+<meta name="twitter:description" content="Git——著名的开源分布式版本控制系统，2005年由林纳斯发明，最早用于管理linux内核代码。
+常用命令创建新仓库123mkdir dirnamecd dirnamegit init">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/blogimg/wifli.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">T1h0can</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/T1h0can" title="github">github</a>
+		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/19950529zz@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">T1h0can</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/blogimg/wifli.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">T1h0can</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/T1h0can" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/19950529zz@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-git-command" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Git命令总结备忘
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Git——著名的开源分布式版本控制系统，2005年由林纳斯发明，最早用于管理linux内核代码。</p>
+<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><h2 id="创建新仓库"><a href="#创建新仓库" class="headerlink" title="创建新仓库"></a>创建新仓库</h2><figure class="highlight dos"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">mkdir</span> dirname</div><div class="line"><span class="built_in">cd</span> dirname</div><div class="line">git init</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><p>克隆一个本地仓库</p>
+<blockquote>
+<p>git clone /path/to/repository</p>
+</blockquote>
+<p>克隆一个远端仓库</p>
+<blockquote>
+<p>git clone username@host:/path/to/repository</p>
+</blockquote>
+<p>举个从github克隆的例子</p>
+<blockquote>
+<p>git clone <a href="https://github.com/username/repository.git" target="_blank" rel="external">https://github.com/username/repository.git</a></p>
+</blockquote>
+<h1 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h1><p>本地仓库主要由三部分组成</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong> workspcae </strong></th>
+<th style="text-align:center">工作目录是仓库内文件的实际位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong> Index  </strong></td>
+<td style="text-align:center"><strong> 类似于缓存，临时保存文件改动 </strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong> HEAD </strong></td>
+<td style="text-align:center"><strong> 指向最后一次提交提交结果 </strong></td>
+</tr>
+</tbody>
+</table>
+<h1 id="添加和提交"><a href="#添加和提交" class="headerlink" title="添加和提交"></a>添加和提交</h1><p>每当有文件更改,可以添加到Index:</p>
+<blockquote>
+<p>git add filename</p>
+</blockquote>
+<p>修改文件太多可以用以下命令查看当前分支与远端分支的差异:</p>
+<blockquote>
+<p>git status</p>
+</blockquote>
+<p>提交改动到HEAD:</p>
+<blockquote>
+<p>git commit -m “改动信息”</p>
+</blockquote>
+<p>此时本地更改还没有提交到远端仓库</p>
+<h1 id="推送改动"><a href="#推送改动" class="headerlink" title="推送改动"></a>推送改动</h1><p>用如下命令把改动提交到远端仓库:</p>
+<blockquote>
+<p>git push origin master</p>
+</blockquote>
+<p>此处master可以改成任何想推送的分支</p>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><p>分支是用来将特性开发绝缘开来的。在创建仓库的时候，master 是默认分支。先在其他分支上进行开发，完成后再将它们合并到主分支上。<br>创建一个叫<code>test</code>的分支，并切换过去:</p>
+<blockquote>
+<p>git checkout -b test</p>
+</blockquote>
+<p>切换回主分支:</p>
+<blockquote>
+<p>git checkout master</p>
+</blockquote>
+<p>如果新建的分支不需要了，删掉:</p>
+<blockquote>
+<p>git branch -d test</p>
+</blockquote>
+<h1 id="更新与合并"><a href="#更新与合并" class="headerlink" title="更新与合并"></a>更新与合并</h1><p>从远端下载并合并到本地仓库:</p>
+<blockquote>
+<p>git pull</p>
+</blockquote>
+<p>但是这样是不安全的，最好把pull拆分成fetch和merge两部分</p>
+<blockquote>
+<p>git fetch</p>
+</blockquote>
+<p>从远端仓库下载</p>
+<blockquote>
+<p>git merge <branch></branch></p>
+</blockquote>
+<p>合并仓库<br>合并仓库时把任意分支的内容合并到当前分支合并之前可以用以下命令先查看当前分支和要合并进来的分支有何区别:</p>
+<blockquote>
+<p>git diff <branch></branch></p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/11/16/git-command/" class="archive-article-date">
+  	<time datetime="2016-11-16T03:56:43.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-16</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/备忘/">备忘</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/01/big-n-little-endian-n-hton/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          大尾端，小尾端及互相转换
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/16/pdp11/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">PDP-11</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 T1h0can
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/unix环境高级编程/" style="font-size: 10px;">unix环境高级编程</a> <a href="/tags/备忘/" style="font-size: 20px;">备忘</a> <a href="/tags/安全/" style="font-size: 13.33px;">安全</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/弈城/" style="font-size: 10px;">弈城</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">T1h0can,&lt;br&gt;&lt;br&gt;在俄罗斯的留学生&lt;br&gt;&lt;br&gt;爱好骑行，&lt;br&gt;各种拉爆，秒天，秒地，秒空气&lt;br&gt;&lt;br&gt;做过GTA的mod，现专心写bug</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>

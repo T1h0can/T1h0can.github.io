@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="https://t1h0can.github.io">
+  <title>大尾端，小尾端及互相转换 | T1h0can的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="大小尾端尾端也叫端序或字节顺序，是计算机数据存储的一种模式，分为大尾端和小尾端两大阵营。采用大尾端的处理器有Motorola 6800,  PowerPC 970等，采用小尾端的最常见的就是目前PC的主流架构X86，还有一些处理器是大小尾端可配置的，如手机端的ARM。
+起源尾端的英文单词是endian，源自于格列夫游记中吃鸡蛋时打破大端的(big-end)和打破小端的(little-end)两派，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大尾端，小尾端及互相转换">
+<meta property="og:url" content="https://t1h0can.github.io/2016/12/01/big-n-little-endian-n-hton/index.html">
+<meta property="og:site_name" content="T1h0can的博客">
+<meta property="og:description" content="大小尾端尾端也叫端序或字节顺序，是计算机数据存储的一种模式，分为大尾端和小尾端两大阵营。采用大尾端的处理器有Motorola 6800,  PowerPC 970等，采用小尾端的最常见的就是目前PC的主流架构X86，还有一些处理器是大小尾端可配置的，如手机端的ARM。
+起源尾端的英文单词是endian，源自于格列夫游记中吃鸡蛋时打破大端的(big-end)和打破小端的(little-end)两派，">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/endian.jpg">
+<meta property="og:updated_time" content="2016-12-11T01:54:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大尾端，小尾端及互相转换">
+<meta name="twitter:description" content="大小尾端尾端也叫端序或字节顺序，是计算机数据存储的一种模式，分为大尾端和小尾端两大阵营。采用大尾端的处理器有Motorola 6800,  PowerPC 970等，采用小尾端的最常见的就是目前PC的主流架构X86，还有一些处理器是大小尾端可配置的，如手机端的ARM。
+起源尾端的英文单词是endian，源自于格列夫游记中吃鸡蛋时打破大端的(big-end)和打破小端的(little-end)两派，">
+<meta name="twitter:image" content="https://t1h0can.github.io/assets/blogimg/endian.jpg">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/main.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+      <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img src="/assets/blogimg/wifli.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">T1h0can</a></h1>
+		</hgroup>
+
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+	        
+    		
+    			
+    			<a class="js-smart-menu" data-idx="0" href="javascript:void(0)">所有文章</a>
+    			
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="1" href="javascript:void(0)">标签</a>
+    			
+    			
+            
+    			
+            
+    			
+    			<a class="js-smart-menu" data-idx="2" href="javascript:void(0)">关于我</a>
+    			
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="https://github.com/T1h0can" title="github">github</a>
+		        
+					<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+		        
+					<a class="mail" target="_blank" href="/19950529zz@gmail.com" title="mail">mail</a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"><i class="icon-list"></i></div>
+  		<h1 class="header-author js-mobile-header hide">T1h0can</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				
+					<img src="/assets/blogimg/wifli.png" class="js-avatar">
+				
+			</div>
+			<hgroup>
+			  <h1 class="header-author">T1h0can</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/T1h0can" title="github">github</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+						<a class="mail" target="_blank" href="/19950529zz@gmail.com" title="mail">mail</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap">
+        <article id="post-big-n-little-endian-n-hton" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      大尾端，小尾端及互相转换
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="大小尾端"><a href="#大小尾端" class="headerlink" title="大小尾端"></a>大小尾端</h1><p>尾端也叫端序或字节顺序，是计算机数据存储的一种模式，分为大尾端和小尾端两大阵营。<br>采用大尾端的处理器有<code>Motorola 6800,  PowerPC 970</code>等，采用小尾端的最常见的就是目前PC的主流架构<code>X86</code>，还有一些处理器是大小尾端可配置的，如手机端的<code>ARM</code>。</p>
+<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>尾端的英文单词是<code>endian</code>，源自于格列夫游记中吃鸡蛋时打破大端的(big-end)和打破小端的(little-end)两派，形象的区分了两者。</p>
+<a id="more"></a>
+<h2 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h2><p>大尾端机器数据的存储方向和一般的阅读方向相同，从左往右，数据的高位在低地址。<br>小尾端与之相反，数据低位在低地址。</p>
+<p>其实上面都是废话，引用微信公众号“Linux爱好者”发的一篇有关端序的文章里的配图就能解释清一切<br><img src="/assets/blogimg/endian.jpg" alt="endian"></p>
+<p>运行以下C程序可以知道当前机器的默认端序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">	<span class="keyword">int</span> c = <span class="number">16</span>;</div><div class="line">	<span class="keyword">char</span> * point = (<span class="keyword">char</span> *) (&amp;c);</div><div class="line">	<span class="keyword">if</span> (* point == <span class="number">16</span>)</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"little endian\n"</span>);</div><div class="line">	<span class="keyword">else</span> &#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"big endian\n"</span>);</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"%s\n"</span>, * point);</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h1><p>在涉及到网络编程的时候，数据从我们的机器发出后，接收数据的机器的默认端序我们并不知道，为了防止16变4096的情况发生，IP协议中定义大端序为网络端序。</p>
+<p>在转换端序时会用到下面四个函数(包含在头文件netinet/in.h中):</p>
+<ul>
+<li>unsigned short int htons(unsigned short int hostshort)  //小端序无符号短整形转换为大端序</li>
+<li>unsigned long int htons(unsigned long int hostlong)        //小端序无符号长整形转换为大端序</li>
+<li>unsigned short int ntohs(unsigned short int netshort) //大端序无符号短整形转换为小端序</li>
+<li>unsigned long int ntohl(unsigned long int netlong)        //大端序无符号长整形转换为小端序</li>
+</ul>
+<p>以上四个函数返回值为对应端序的数据</p>
+<hr>
+<p>解释一下16是如何变成4096的</p>
+<p>16用十六进制表示是0x0010,小端序方式存储时数据在内存中的顺序是,假设存储这个数字的地址是从100开始的</p>
+<table>
+<thead>
+<tr>
+<th>100</th>
+<th>101</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x00</td>
+</tr>
+</tbody>
+</table>
+<p>如果不经转换直接发送到大端序机器上,顺序还是</p>
+<table>
+<thead>
+<tr>
+<th>100</th>
+<th>101</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x10</td>
+<td>0x00</td>
+</tr>
+</tbody>
+</table>
+<p>但是表示的数据却是0x1000,转换成十进制数是4096</p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2016/12/01/big-n-little-endian-n-hton/" class="archive-article-date">
+  	<time datetime="2016-12-01T00:15:23.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-12-01</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unix环境高级编程/">unix环境高级编程</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/备忘/">备忘</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2016/12/18/tygem/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          manjaro linux 安装弈城围棋客户端
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/11/16/git-command/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Git命令总结备忘</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
+
+
+
+
+
+
+
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 T1h0can
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: false,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true
+	}
+</script>
+
+<script src="/./main.js"></script>
+
+
+
+    
+<div class="tools-col">
+  <ul class="btn-wrap">
+    
+      <li class="chose" data-hook="tools-section-all"><span class="text">全部</span><i class="icon-book"></i></li>
+    
+    
+      <li data-hook="tools-section-tag"><span class="text">标签</span><i class="icon-price-tags"></i></li>
+    
+    
+    
+      <li data-hook="tools-section-me"><span class="text">我</span><i class="icon-smile"></i></li>
+    
+  </ul>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all chose">
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-tag">
+    			<div class="widget tagcloud" id="js-tagcloud">
+    				<a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/unix环境高级编程/" style="font-size: 10px;">unix环境高级编程</a> <a href="/tags/备忘/" style="font-size: 20px;">备忘</a> <a href="/tags/安全/" style="font-size: 13.33px;">安全</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/弈城/" style="font-size: 10px;">弈城</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a>
+    			</div>
+    	</section>
+    
+
+    
+
+    
+    	<section class="tools-section tools-section-me">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">T1h0can,&lt;br&gt;&lt;br&gt;在俄罗斯的留学生&lt;br&gt;&lt;br&gt;爱好骑行，&lt;br&gt;各种拉爆，秒天，秒地，秒空气&lt;br&gt;&lt;br&gt;做过GTA的mod，现专心写bug</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
