@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://t1h0can.github.io/"/>
-  <updated>2017-02-20T23:00:59.054Z</updated>
+  <updated>2017-02-20T23:03:01.351Z</updated>
   <id>https://t1h0can.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://t1h0can.github.io/2017/02/20/garminDevStart/"/>
     <id>https://t1h0can.github.io/2017/02/20/garminDevStart/</id>
     <published>2017-02-20T20:52:40.000Z</published>
-    <updated>2017-02-20T23:00:59.054Z</updated>
+    <updated>2017-02-20T23:03:01.351Z</updated>
     
     <content type="html"><![CDATA[<p>众所周知garmin是有名的GPS，户外，运动可穿戴设备生产商，我有一块Garmin Fenix3手表，可以安装第三方开发的软件，最近比较感兴趣，想写一个自己的表盘，就研究了一下。</p>
 <p>很可惜关于Garmin开发的资料很少，毕竟用Garmin的都是喜欢运动的，而程序员都是很少有运动的机会，根本就是两个次元的生物，23333333。<br>所以只能啃官方的英文文档。。。</p>
@@ -45,7 +45,9 @@
     </summary>
     
     
-      <category term="-Garmin -Eclipse" scheme="https://t1h0can.github.io/tags/Garmin-Eclipse/"/>
+      <category term="Garmin" scheme="https://t1h0can.github.io/tags/Garmin/"/>
+    
+      <category term="Eclipse" scheme="https://t1h0can.github.io/tags/Eclipse/"/>
     
   </entry>
   
