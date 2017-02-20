@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://t1h0can.github.io/"/>
-  <updated>2016-12-18T13:18:43.000Z</updated>
+  <updated>2017-02-20T22:45:35.108Z</updated>
   <id>https://t1h0can.github.io/</id>
   
   <author>
@@ -14,6 +14,39 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Garmin开发入门(1)-安装配置</title>
+    <link href="https://t1h0can.github.io/2017/02/20/garminDevStart/"/>
+    <id>https://t1h0can.github.io/2017/02/20/garminDevStart/</id>
+    <published>2017-02-20T20:52:40.000Z</published>
+    <updated>2017-02-20T22:45:35.108Z</updated>
+    
+    <content type="html"><![CDATA[<p>众所周知garmin是有名的GPS，户外，运动可穿戴设备生产商，我有一块Garmin Fenix3手表，可以安装第三方开发的软件，最近比较感兴趣，想写一个自己的表盘，就研究了一下。</p>
+<p>很可惜关于Garmin开发的资料很少，毕竟用Garmin的都是喜欢运动的，而程序员都是很少有运动的机会，根本就是两个次元的生物，23333333。<br>所以只能啃官方的英文文档。。。</p>
+<p>先搭建好开发环境<br>Garmin现在提供的SDK只支持Mac或者Windows环境，这让我很不爽，windows下明显没有linux来的巴适<br>先自行下载好Java 8,然后安装好eclipse<br>下面提供Garmin SDK下载地址:<br><a href="https://developer.garmin.com/connect-iq/sdk/" target="_blank" rel="external">Garmin</a><br>下载好解压，把<code>\connectiq-sdk\bin</code>添加进环境变量<br>安装eclipse的connect IQ插件，点击菜单栏的<code>Help</code>，选<code>Install New Software</code><br><img src="https://developer.garmin.com/downloads/connect-iq/resources/programmers-guide/install_new_software.png" alt="plug-in"><br>点<code>Add</code>，输入名称和地址：</p>
+<ul>
+<li>Connect IQ Plugin</li>
+<li><a href="http://developer.garmin.com/downloads/connect-iq/eclipse/" target="_blank" rel="external">http://developer.garmin.com/downloads/connect-iq/eclipse/</a></li>
+</ul>
+<p>如图：<br><img src="https://developer.garmin.com/downloads/connect-iq/resources/programmers-guide/edit_site.png" alt="nameLocation"></p>
+<p>一路next安装，然后配置插件，点开菜单栏<code>Window</code>，选<code>Preferences</code>,打开后点<code>Connect IQ</code>，填开始时下载的SDK路径<br>如图：<br><img src="https://developer.garmin.com/downloads/connect-iq/resources/programmers-guide/eclipse_prefs.png" alt="configure"></p>
+<p>添加Connect IQ视图到eclipse,点开<code>Window</code>,选<code>Prespective</code>下<code>Open Perspecitve</code>里的<code>Other</code>，选择ConnectIQ<br>如图：<br><img src="https://developer.garmin.com/downloads/connect-iq/resources/programmers-guide/perspective.png" alt="perspective"></p>
+<p>环境配置完成，接下来就可以编写Garmin的程序了<br>新建一个<code>ConnectIQ</code>项目，以fenix3为例，写一个表盘watch face<br><img src="/assets/blogimg/project.png" alt="project"><br><img src="/assets/blogimg/fenixproject.png" alt="fenixproject"><br>直接点<code>Finish</code>，现在就可以直接运行在模拟器里看一下效果<br><img src="/assets/blogimg/run.png" alt="run"></p>
+<p>下面是我写的四个表盘，前两个莫名其妙出bug，正常显示一段时间后白屏然后只显示小时。。。第三个强行膜了一把(手动滑稽)，已经很上传到connect iq官方商店了，第四个是仿tokyoflash的表盘，再利用了一下空间加上了电量通知闹钟和活动信息，估计不会上传官方商店了，毕竟设计是tokyoflash的不能乱发<br><img src="/assets/blogimg/mipt.png" alt="mipt"><br><img src="/assets/blogimg/wearmin.png" alt="wearmin"><br><img src="/assets/blogimg/realfans.png" alt="realfans"><br><img src="/assets/blogimg/tokyoflash.png" alt="tokyoflash"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;众所周知garmin是有名的GPS，户外，运动可穿戴设备生产商，我有一块Garmin Fenix3手表，可以安装第三方开发的软件，最近比较感兴趣，想写一个自己的表盘，就研究了一下。&lt;/p&gt;
+&lt;p&gt;很可惜关于Garmin开发的资料很少，毕竟用Garmin的都是喜欢运动的，而程
+    
+    </summary>
+    
+    
+      <category term="-Garmin -Eclipse" scheme="https://t1h0can.github.io/tags/Garmin-Eclipse/"/>
+    
+  </entry>
   
   <entry>
     <title>manjaro linux 安装弈城围棋客户端</title>

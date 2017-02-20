@@ -129,6 +129,67 @@
       <div class="body-wrap">
         
   
+    <article id="post-garminDevStart" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/20/garminDevStart/">Garmin开发入门(1)-安装配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>众所周知garmin是有名的GPS，户外，运动可穿戴设备生产商，我有一块Garmin Fenix3手表，可以安装第三方开发的软件，最近比较感兴趣，想写一个自己的表盘，就研究了一下。</p>
+<p>很可惜关于Garmin开发的资料很少，毕竟用Garmin的都是喜欢运动的，而程序员都是很少有运动的机会，根本就是两个次元的生物，23333333。<br>所以只能啃官方的英文文档。。。</p>
+<p>先搭建好开发环境<br>Garmin现在提供的SDK只支持Mac或者Windows环境，这让我很不爽，windows下明显没有linux来的巴适<br>先自行下载好Java 8,然后安装好eclipse<br>下面提供Garmin SDK下载地址:<br><a href="https://developer.garmin.com/connect-iq/sdk/" target="_blank" rel="external">Garmin</a><br>下载好解压，把<code>\connectiq-sdk\bin</code>添加进环境变量<br>安装eclipse的connect IQ插件，点击菜单栏的<code>Help</code>，选<code>Install New Software</code><br><img src="https://developer.garmin.com/downloads/connect-iq/resources/programmers-guide/install_new_software.png" alt="plug-in"><br>点<code>Add</code>，输入名称和地址：</p>
+<ul>
+<li>Connect IQ Plugin</li>
+<li><a href="http://developer.garmin.com/downloads/connect-iq/eclipse/" target="_blank" rel="external">http://developer.garmin.com/downloads/connect-iq/eclipse/</a></li>
+</ul>
+<p>如图：<br><img src="https://developer.garmin.com/downloads/connect-iq/resources/programmers-guide/edit_site.png" alt="nameLocation"></p>
+<p>一路next安装，然后配置插件，点开菜单栏<code>Window</code>，选<code>Preferences</code>,打开后点<code>Connect IQ</code>，填开始时下载的SDK路径<br>如图：<br><img src="https://developer.garmin.com/downloads/connect-iq/resources/programmers-guide/eclipse_prefs.png" alt="configure"></p>
+<p>添加Connect IQ视图到eclipse,点开<code>Window</code>,选<code>Prespective</code>下<code>Open Perspecitve</code>里的<code>Other</code>，选择ConnectIQ<br>如图：<br><img src="https://developer.garmin.com/downloads/connect-iq/resources/programmers-guide/perspective.png" alt="perspective"></p>
+<p>环境配置完成，接下来就可以编写Garmin的程序了<br>新建一个<code>ConnectIQ</code>项目，以fenix3为例，写一个表盘watch face<br><img src="/assets/blogimg/project.png" alt="project"><br><img src="/assets/blogimg/fenixproject.png" alt="fenixproject"><br>直接点<code>Finish</code>，现在就可以直接运行在模拟器里看一下效果<br><img src="/assets/blogimg/run.png" alt="run"></p>
+<p>下面是我写的四个表盘，前两个莫名其妙出bug，正常显示一段时间后白屏然后只显示小时。。。第三个强行膜了一把(手动滑稽)，已经很上传到connect iq官方商店了，第四个是仿tokyoflash的表盘，再利用了一下空间加上了电量通知闹钟和活动信息，估计不会上传官方商店了，毕竟设计是tokyoflash的不能乱发<br><img src="/assets/blogimg/mipt.png" alt="mipt"><br><img src="/assets/blogimg/wearmin.png" alt="wearmin"><br><img src="/assets/blogimg/realfans.png" alt="realfans"><br><img src="/assets/blogimg/tokyoflash.png" alt="tokyoflash"></p>
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/02/20/garminDevStart/" class="archive-article-date">
+  	<time datetime="2017-02-20T20:52:40.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-20</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Garmin-Eclipse/">-Garmin -Eclipse</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-tygem" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -609,56 +670,6 @@
 
 
   
-    <article id="post-memorandum" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/10/memorandum/">。。。</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>随便写点博客，不求利人，只求给自己健忘的脑子记本备忘录</p>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/11/10/memorandum/" class="archive-article-date">
-  	<time datetime="2016-11-09T21:21:39.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂/">杂</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -723,7 +734,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/unix环境高级编程/" style="font-size: 10px;">unix环境高级编程</a> <a href="/tags/备忘/" style="font-size: 20px;">备忘</a> <a href="/tags/安全/" style="font-size: 13.33px;">安全</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/弈城/" style="font-size: 10px;">弈城</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a>
+    				<a href="/tags/Garmin-Eclipse/" style="font-size: 10px;">-Garmin -Eclipse</a> <a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/unix环境高级编程/" style="font-size: 10px;">unix环境高级编程</a> <a href="/tags/备忘/" style="font-size: 20px;">备忘</a> <a href="/tags/安全/" style="font-size: 13.33px;">安全</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/弈城/" style="font-size: 10px;">弈城</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a>
     			</div>
     	</section>
     
