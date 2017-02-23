@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://t1h0can.github.io/"/>
-  <updated>2017-02-20T23:03:01.351Z</updated>
+  <updated>2017-02-23T19:04:02.106Z</updated>
   <id>https://t1h0can.github.io/</id>
   
   <author>
@@ -14,6 +14,89 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Garmin开发入门(2)-项目结构分析与简单开发</title>
+    <link href="https://t1h0can.github.io/2017/02/23/garminDev2/"/>
+    <id>https://t1h0can.github.io/2017/02/23/garminDev2/</id>
+    <published>2017-02-23T16:58:25.000Z</published>
+    <updated>2017-02-23T19:04:02.106Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一篇中已经配置好了开发环境，新建了一个项目，并且看到了运行的效果。这回分析一下项目的结构，再进行一下简单的开发。</p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="/assets/blogimg/projectExplorer.png" alt="projectexplorer"></p>
+<a id="more"></a>
+<p>如图，</p>
+<p>项目文件夹下主要有三部分</p>
+<p><code>bin</code>文件夹下就是编译生成的文件，<code>.prg</code>文件复制到Garmin设备下的<code>APP</code>文件夹下就能在设备上运行。</p>
+<p><code>resource</code>文件夹下主要是程序所需的资源，图形，布局，字符串，开发时自定义的字体设置等信息也在这里添加</p>
+<p><code>source</code>文件夹下就是程序的主题，开发主要在<code>ProjectNameView.mc</code>下进行，我认为<code>ProjectNameApp.mc</code>只是程序初始化需要的，一般不需要动。</p>
+<p><code>manifest.xml</code>里记录着项目创建时的信息，项目名，适配设备，适配语言，权限需求等。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><p><img src="/assets/blogimg/codeview.png" alt="codeview"></p>
+<p>说到代码了，就不得不提一下Garmin开发所用的语言，Monkey C，这是Garmin自己开发的一种语言，在它身上有许多流行语言的影子。<br>导入模块时<code>using Toybox.Application as App</code>语法和python的<code>import</code>非常相似，但是<code>using</code>有不能不让人想到c++的<code>using namespace std</code>，所以但凡有些编程基础的人都可以很快上手。</p>
+<p><code>Toybox</code>是Monkey C的根模块，按照Garmin自己的话说就是所有有趣的玩具都存放在里面。</p>
+<p>下面是一张从官方API文档里截的图，列出了<code>Toybox</code>下所有的<code>Toy</code>:</p>
+<p><img src="/assets/blogimg/classList.png" alt="classList"></p>
+<p>现在翻回头去看代码，在Monkey C中<code>function onUpdate(dc)</code>函数可以看作是主函数。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> clockTime = Sys.getClockTime();</div><div class="line"><span class="keyword">var</span> timeString = Lang.<span class="keyword">format</span>(<span class="string">"$1$:$2$"</span>, [clockTime.hour, clockTime.min.<span class="keyword">format</span>(<span class="string">"%02d"</span>)]);</div><div class="line"><span class="keyword">var</span> <span class="keyword">view</span> = viewfindDrawableById(<span class="string">"TimeLable"</span>);</div><div class="line"><span class="keyword">View</span>.setText(timeString);</div></pre></td></tr></table></figure>
+<p>用<code>getClockTime()</code>从<code>System</code>模块里读取时间信息赋给变量<code>clockTime</code>，然后把小时和分钟数转成字符串赋给<code>timeString</code>，通过id查找把<code>TimeLabel</code>里的信息赋给<code>view</code>，用<code>setText</code>函数输出时间字符串。</p>
+<p><code>getClockTime()</code>能读取的变量有<code>dst</code>夏令时偏差，<code>hour</code>小时，<code>min</code>分钟，<code>sec</code>秒，<code>timeZoneOffset</code>当前时区相对格林尼治时间的偏差（单位是秒）。<br>顺便说一下，这里能读取的虽然有秒，但是简单的改变一下赋个<code>timeString</code>的变量是不能实现每秒都显示的，因为<code>onUpdate()</code>函数是每分钟刷新的。</p>
+<p><code>viewfindDrawableById()</code>是根据id查找绘制信息，自变量<code>TimeLabel</code>必然是在<code>resource</code>文件夹下的，最后在<code>layout.xml</code>下能找到:</p>
+<ul>
+<li><lablel id="TimeLabel" x="center" y="center" font="Gfx.FONT_LARGE" justification="Gfx.TEXT_JUSTIFY_CENTER" color="Gfx.COLOR_BLUE">
+
+</lablel></li>
+</ul>
+<p>这里id不必说，<code>x</code>和<code>y</code>就是绘制位置，以fenix3为例，显示区域就是一个圆心在(109,109)的半径为109的圆，<code>center</code>自然便是109,<code>font</code>是绘制文字的字体，如果调用的不是自定义字体，这里的<code>Gfx.FONT_LARGE</code>是字号，在<code>Graphics</code>模块里，具体有哪些可以查看API文档，<code>justificaton</code>这个参数是指绘制位置，这里<code>Gfx.TEXT_JUSTIFY_CENTER</code>就是居中，同上可以在API文档中查看，<code>color</code>是子的颜色，这里<code>Gfx.COLOR_BLUE</code>就很好解释为什么一开始编译好后字是蓝色的。</p>
+<h1 id="简单开发-第一个自定义表盘"><a href="#简单开发-第一个自定义表盘" class="headerlink" title="简单开发-第一个自定义表盘"></a>简单开发-第一个自定义表盘</h1><p>先说一下第一个表盘的思路：让表盘支持12小时和24小时显示，时间显示用自定义字体，小时与分钟用不同颜色。</p>
+<p>现在<code>resource</code>文件夹下新建一个叫<code>fonts</code>的文件夹。</p>
+<p>自定义字体的话可以用<code>BMFont tool</code>编辑。<br>下载地址:</p>
+<p><a href="http://www.angelcode.com/products/bmfont" target="_blank" rel="external">bmfont</a></p>
+<p>打开如图</p>
+<p><img src="/assets/blogimg/bmfont.png" alt="tool"></p>
+<p>点<code>Options</code>选<code>Font settings</code></p>
+<p><img src="/assets/blogimg/fontSetting.png" alt="fontsettings"></p>
+<p>我这里选了一个叫<code>Paranoid Orange</code>的艺术字体，<code>size</code>选100</p>
+<p>点<code>Options</code>选<code>Export Options</code></p>
+<p><img src="/assets/blogimg/exportOptions.png" alt="exportoptions"></p>
+<p>下面贴图导出选<code>png</code></p>
+<p><img src="/assets/blogimg/bmfontxuan.png" alt="bmfontxuan"></p>
+<p>选中数字，点<code>Options</code>选<code>Save bitmap font as</code>，名字随便取，保存在<code>resource</code>下的<code>fonts</code>文件夹里</p>
+<p>在文件夹下新建一个<code>fonts.xml</code></p>
+<p><img src="/assets/blogimg/fonts.png" alt="fonts"></p>
+<p>在<code>ProjectNameView.mc</code>中改成这样</p>
+<p><img src="/assets/blogimg/codeview1.png" alt="codeview1"></p>
+<p>运行</p>
+<table>
+<thead>
+<tr>
+<th>原版</th>
+<th>改后                               </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="/assets/blogimg/buyer.png" alt="seller"></td>
+<td><img src="/assets/blogimg/seller.png" alt="buyer"> </td>
+</tr>
+</tbody>
+</table>
+<p>可以在`Settings里切换12小时和24小时</p>
+<p>第一个表盘就开发完成了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;第一篇中已经配置好了开发环境，新建了一个项目，并且看到了运行的效果。这回分析一下项目的结构，再进行一下简单的开发。&lt;/p&gt;
+&lt;h1 id=&quot;结构&quot;&gt;&lt;a href=&quot;#结构&quot; class=&quot;headerlink&quot; title=&quot;结构&quot;&gt;&lt;/a&gt;结构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/assets/blogimg/projectExplorer.png&quot; alt=&quot;projectexplorer&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Garmin" scheme="https://t1h0can.github.io/tags/Garmin/"/>
+    
+      <category term="Eclipse" scheme="https://t1h0can.github.io/tags/Eclipse/"/>
+    
+  </entry>
   
   <entry>
     <title>Garmin开发入门(1)-安装配置</title>
@@ -147,11 +230,11 @@
     </summary>
     
     
+      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
+    
       <category term="unix环境高级编程" scheme="https://t1h0can.github.io/tags/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"/>
     
       <category term="笔记" scheme="https://t1h0can.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
     
   </entry>
   
@@ -252,9 +335,9 @@
     </summary>
     
     
-      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
-    
       <category term="git" scheme="https://t1h0can.github.io/tags/git/"/>
+    
+      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
     
   </entry>
   
@@ -525,9 +608,9 @@
     
       <category term="android" scheme="https://t1h0can.github.io/tags/android/"/>
     
-      <category term="安全" scheme="https://t1h0can.github.io/tags/%E5%AE%89%E5%85%A8/"/>
-    
       <category term="Kali" scheme="https://t1h0can.github.io/tags/Kali/"/>
+    
+      <category term="安全" scheme="https://t1h0can.github.io/tags/%E5%AE%89%E5%85%A8/"/>
     
   </entry>
   
@@ -688,9 +771,9 @@
     </summary>
     
     
-      <category term="test" scheme="https://t1h0can.github.io/tags/test/"/>
-    
       <category term="杂" scheme="https://t1h0can.github.io/tags/%E6%9D%82/"/>
+    
+      <category term="test" scheme="https://t1h0can.github.io/tags/test/"/>
     
   </entry>
   

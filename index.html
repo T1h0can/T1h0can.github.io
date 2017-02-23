@@ -129,6 +129,59 @@
       <div class="body-wrap">
         
   
+    <article id="post-garminDev2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/23/garminDev2/">Garmin开发入门(2)-项目结构分析与简单开发</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一篇中已经配置好了开发环境，新建了一个项目，并且看到了运行的效果。这回分析一下项目的结构，再进行一下简单的开发。</p>
+<h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="/assets/blogimg/projectExplorer.png" alt="projectexplorer"></p>
+        <p class="article-more-link">
+          <a class="article-more-a"  href="/2017/02/23/garminDev2/#more">more >></a>
+        </p>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      <a href="/2017/02/23/garminDev2/" class="archive-article-date">
+  	<time datetime="2017-02-23T16:58:25.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-23</time>
+</a>
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags"></i>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Garmin/">Garmin</a></li></ul>
+	</div>
+
+      
+
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+
+
+  
     <article id="post-garminDevStart" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -610,58 +663,6 @@
 
 
   
-    <article id="post-DirtyCOW-CVE-2016-5195-测试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/10/DirtyCOW-CVE-2016-5195-测试/">DirtyCOW(CVE-2016-5195)测试</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近研究人员Phil Oester发现了dirtyCOW脏奶牛漏洞，影响从2007年linux2.6.22至今的所有linux内核。dirtyCOW是本地提权漏洞，具体是利用linux内存子系统在处理写时复制(copy-on-write,COW)时产生了竞争条件,使得低权限用户有机会对只读内存里的内容进行写入操作，达到提权的目的。<br>众所周知，android系统也是基于linux内核，所以dirtyCOW对android设备同样适用，而且是全系android通用，因为android 1.0 内核版本是2.6.25。<br>github上已经有人放出了android可用的<a href="https://github.com/timwr/CVE-2016-5195">PoC</a>,而谷歌11月5日发布的安全更新还没有修复这个漏洞，有兴趣测试的可以一下。</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2016/11/10/DirtyCOW-CVE-2016-5195-测试/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/11/10/DirtyCOW-CVE-2016-5195-测试/" class="archive-article-date">
-  	<time datetime="2016-11-09T22:17:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -726,7 +727,7 @@
     
     	<section class="tools-section tools-section-tag">
     			<div class="widget tagcloud" id="js-tagcloud">
-    				<a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Eclipse/" style="font-size: 10px;">Eclipse</a> <a href="/tags/Garmin/" style="font-size: 10px;">Garmin</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/unix环境高级编程/" style="font-size: 10px;">unix环境高级编程</a> <a href="/tags/备忘/" style="font-size: 20px;">备忘</a> <a href="/tags/安全/" style="font-size: 13.33px;">安全</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/弈城/" style="font-size: 10px;">弈城</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a>
+    				<a href="/tags/C语言/" style="font-size: 10px;">C语言</a> <a href="/tags/Eclipse/" style="font-size: 13.33px;">Eclipse</a> <a href="/tags/Garmin/" style="font-size: 13.33px;">Garmin</a> <a href="/tags/Kali/" style="font-size: 10px;">Kali</a> <a href="/tags/android/" style="font-size: 16.67px;">android</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/sublime/" style="font-size: 10px;">sublime</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/unix环境高级编程/" style="font-size: 10px;">unix环境高级编程</a> <a href="/tags/备忘/" style="font-size: 20px;">备忘</a> <a href="/tags/安全/" style="font-size: 13.33px;">安全</a> <a href="/tags/工具/" style="font-size: 10px;">工具</a> <a href="/tags/弈城/" style="font-size: 10px;">弈城</a> <a href="/tags/杂/" style="font-size: 13.33px;">杂</a> <a href="/tags/笔记/" style="font-size: 10px;">笔记</a> <a href="/tags/系统/" style="font-size: 10px;">系统</a> <a href="/tags/编辑器/" style="font-size: 10px;">编辑器</a>
     			</div>
     	</section>
     
