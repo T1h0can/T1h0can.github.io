@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://t1h0can.github.io">
-  <title>T1h0can的博客</title>
+  <title>Garmin开发入门(3)-图标字体偷梁换柱 | T1h0can的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="某在俄罗斯的留学生的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="T1h0can的博客">
-<meta property="og:url" content="https://t1h0can.github.io/page/2/index.html">
+  <meta name="description" content="上一篇里说到了自定义字体，在做表盘时添加的电池等图标也可以以字体的形式添加，网上很多现成的图标字体就可以为自己所用，但是不能直接显示，就要用到偷梁换柱之术。
+接着以第一个表盘为例，添加添加图标，并显示一些对应的信息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Garmin开发入门(3)-图标字体偷梁换柱">
+<meta property="og:url" content="https://t1h0can.github.io/2017/02/24/garminDev3/index.html">
 <meta property="og:site_name" content="T1h0can的博客">
-<meta property="og:description" content="某在俄罗斯的留学生的博客">
+<meta property="og:description" content="上一篇里说到了自定义字体，在做表盘时添加的电池等图标也可以以字体的形式添加，网上很多现成的图标字体就可以为自己所用，但是不能直接显示，就要用到偷梁换柱之术。
+接着以第一个表盘为例，添加添加图标，并显示一些对应的信息。">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/fnt.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/iconfnt.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/iconexample.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/batteryicon.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/realfans.png">
+<meta property="og:updated_time" content="2017-02-24T00:44:48.217Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="T1h0can的博客">
-<meta name="twitter:description" content="某在俄罗斯的留学生的博客">
+<meta name="twitter:title" content="Garmin开发入门(3)-图标字体偷梁换柱">
+<meta name="twitter:description" content="上一篇里说到了自定义字体，在做表盘时添加的电池等图标也可以以字体的形式添加，网上很多现成的图标字体就可以为自己所用，但是不能直接显示，就要用到偷梁换柱之术。
+接着以第一个表盘为例，添加添加图标，并显示一些对应的信息。">
+<meta name="twitter:image" content="https://t1h0can.github.io/assets/blogimg/fnt.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -127,9 +137,7 @@
 </nav>
 
       <div class="body-wrap">
-        
-  
-    <article id="post-sublime-text-3安装配置" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-garminDev3" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -138,8 +146,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/10/sublime-text-3安装配置/">Sublime Text 3安装配置</a>
+    <h1 class="article-title" itemprop="name">
+      Garmin开发入门(3)-图标字体偷梁换柱
     </h1>
   
 
@@ -147,21 +155,33 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h1><p>sublime text 3是具有代码高亮、语法提示、自动完成且反应快速的编辑器软件，界面华丽，支持插件拓展(整个软件里我只觉得logo有点碍眼，引用我一个朋友的话：感觉是从一个十年前的软件上拿来的，文末提供kde主题里的logo可以替换)。<br>sublime text 3一直处于测试版状态，最新版本是build 3162，虽说还是测试版，稳定性没得说。<br>相对于vim的难上手，VS等大型IDE的臃肿，sublime text 3无疑是最佳选择。</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2016/11/10/sublime-text-3安装配置/#more">more >></a>
-        </p>
+        <p>上一篇里说到了自定义字体，在做表盘时添加的电池等图标也可以以字体的形式添加，网上很多现成的图标字体就可以为自己所用，但是不能直接显示，就要用到偷梁换柱之术。</p>
+<p>接着以第一个表盘为例，添加添加图标，并显示一些对应的信息。</p>
+<a id="more"></a>
+<p>用<code>bmfont</code>打开一个自带图标的字体，我这里用到了<code>FontAwesome</code>这个字体，选择好需要的图标并导出fnt字体。</p>
+<p>打开<code>fnt</code>字体文件可以看到下图</p>
+<p><img src="/assets/blogimg/fnt.png" alt="fnt"></p>
+<p><code>id</code>对应每个字符的编号，看右边的数字字体可以发现编号就是ASCII代码，而左边的图标的编号显然超出了ASCII的范围，要想在表盘上显示出来，最简单的办法就是把它们的id替换成ASCII中的字符。</p>
+<p><img src="/assets/blogimg/iconfnt.png" alt="iconfnt"></p>
+<p>我用大些字母<code>ABCDEFGH</code>代表这些图标，只要在<code>drawText()</code>函数中字符串参数的位置写字母就能绘制出对应图标。</p>
+<p><img src="/assets/blogimg/iconexample.png" alt="iconexample"></p>
+<p>写好的效果如图</p>
+<p><img src="/assets/blogimg/batteryicon.png" alt="battery"></p>
+<p>同理汉字也可以用这种方式显示，适用于不忍心为中文字库多付1000软妹币而选择了英文版的一些中文强迫症（这个群体太小了），具体实现的例子可以参考我的表盘“真正的粉丝”的代码</p>
+<p>续秒地址在此:<a href="https://github.com/T1h0can/realfans" target="_blank" rel="external">我为长者续一秒</a></p>
+<p><img src="/assets/blogimg/realfans.png" alt="realfans"></p>
+
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/11/10/sublime-text-3安装配置/" class="archive-article-date">
-  	<time datetime="2016-11-10T17:00:11.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
+      <a href="/2017/02/24/garminDev3/" class="archive-article-date">
+  	<time datetime="2017-02-23T23:33:18.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-24</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/">sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/工具/">工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/编辑器/">编辑器</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Garmin/">Garmin</a></li></ul>
 	</div>
 
       
@@ -171,174 +191,37 @@
   </div>
 </article>
 
-
-
-
-
-
-
-
-
-
   
-    <article id="post-DirtyCOW-CVE-2016-5195-测试" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/10/DirtyCOW-CVE-2016-5195-测试/">DirtyCOW(CVE-2016-5195)测试</a>
-    </h1>
   
+    <a href="/2017/02/23/garminDev2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Garmin开发入门(2)-项目结构分析与简单开发</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>最近研究人员Phil Oester发现了dirtyCOW脏奶牛漏洞，影响从2007年linux2.6.22至今的所有linux内核。dirtyCOW是本地提权漏洞，具体是利用linux内存子系统在处理写时复制(copy-on-write,COW)时产生了竞争条件,使得低权限用户有机会对只读内存里的内容进行写入操作，达到提权的目的。<br>众所周知，android系统也是基于linux内核，所以dirtyCOW对android设备同样适用，而且是全系android通用，因为android 1.0 内核版本是2.6.25。<br>github上已经有人放出了android可用的<a href="https://github.com/timwr/CVE-2016-5195">PoC</a>,而谷歌11月5日发布的安全更新还没有修复这个漏洞，有兴趣测试的可以一下。</p>
-        <p class="article-more-link">
-          <a class="article-more-a"  href="/2016/11/10/DirtyCOW-CVE-2016-5195-测试/#more">more >></a>
-        </p>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/11/10/DirtyCOW-CVE-2016-5195-测试/" class="archive-article-date">
-  	<time datetime="2016-11-09T22:17:22.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/android/">android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/安全/">安全</a></li></ul>
-	</div>
 
-      
 
-      <div class="clearfix"></div>
-    </div>
+
+
+
+<div class="share_addthis share_jia">
+  <div class="sharing addthis_toolbox share">
+  	<span class="jiathis_txt">Share to: &nbsp; </span>
+    <a class="addthis_button_facebook_like"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
   </div>
-</article>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-560c64c35486b3d4" async="async"></script>
+</div>
 
 
 
 
 
-
-
-
-
-
-  
-    <article id="post-memorandum" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/10/memorandum/">。。。</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>随便写点博客，不求利人，只求给自己健忘的脑子记本备忘录</p>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/11/10/memorandum/" class="archive-article-date">
-  	<time datetime="2016-11-09T21:21:39.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂/">杂</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/11/10/hello-world/">hello-world</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>折腾了几天，看了好多人的教程，终于通过hexo在github上搭出自己的博客。。。<br>还有不少问题没解决，功能没添加，慢慢来吧，先宣誓主权：</p>
-<p><strong>Hello world!</strong></p>
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      <a href="/2016/11/10/hello-world/" class="archive-article-date">
-  	<time datetime="2016-11-09T21:16:18.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
-</a>
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂/">杂</a></li></ul>
-	</div>
-
-      
-
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
-  
 
 
       </div>
@@ -360,8 +243,8 @@
 		fancybox: true,
 		mathjax: false,
 		animate: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

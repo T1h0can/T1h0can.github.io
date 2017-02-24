@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://t1h0can.github.io/"/>
-  <updated>2017-02-23T19:04:02.106Z</updated>
+  <updated>2017-02-24T00:44:48.217Z</updated>
   <id>https://t1h0can.github.io/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Garmin开发入门(3)-图标字体偷梁换柱</title>
+    <link href="https://t1h0can.github.io/2017/02/24/garminDev3/"/>
+    <id>https://t1h0can.github.io/2017/02/24/garminDev3/</id>
+    <published>2017-02-23T23:33:18.000Z</published>
+    <updated>2017-02-24T00:44:48.217Z</updated>
+    
+    <content type="html"><![CDATA[<p>上一篇里说到了自定义字体，在做表盘时添加的电池等图标也可以以字体的形式添加，网上很多现成的图标字体就可以为自己所用，但是不能直接显示，就要用到偷梁换柱之术。</p>
+<p>接着以第一个表盘为例，添加添加图标，并显示一些对应的信息。</p>
+<a id="more"></a>
+<p>用<code>bmfont</code>打开一个自带图标的字体，我这里用到了<code>FontAwesome</code>这个字体，选择好需要的图标并导出fnt字体。</p>
+<p>打开<code>fnt</code>字体文件可以看到下图</p>
+<p><img src="/assets/blogimg/fnt.png" alt="fnt"></p>
+<p><code>id</code>对应每个字符的编号，看右边的数字字体可以发现编号就是ASCII代码，而左边的图标的编号显然超出了ASCII的范围，要想在表盘上显示出来，最简单的办法就是把它们的id替换成ASCII中的字符。</p>
+<p><img src="/assets/blogimg/iconfnt.png" alt="iconfnt"></p>
+<p>我用大些字母<code>ABCDEFGH</code>代表这些图标，只要在<code>drawText()</code>函数中字符串参数的位置写字母就能绘制出对应图标。</p>
+<p><img src="/assets/blogimg/iconexample.png" alt="iconexample"></p>
+<p>写好的效果如图</p>
+<p><img src="/assets/blogimg/batteryicon.png" alt="battery"></p>
+<p>同理汉字也可以用这种方式显示，适用于不忍心为中文字库多付1000软妹币而选择了英文版的一些中文强迫症（这个群体太小了），具体实现的例子可以参考我的表盘“真正的粉丝”的代码</p>
+<p>续秒地址在此:<a href="https://github.com/T1h0can/realfans" target="_blank" rel="external">我为长者续一秒</a></p>
+<p><img src="/assets/blogimg/realfans.png" alt="realfans"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;上一篇里说到了自定义字体，在做表盘时添加的电池等图标也可以以字体的形式添加，网上很多现成的图标字体就可以为自己所用，但是不能直接显示，就要用到偷梁换柱之术。&lt;/p&gt;
+&lt;p&gt;接着以第一个表盘为例，添加添加图标，并显示一些对应的信息。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Garmin" scheme="https://t1h0can.github.io/tags/Garmin/"/>
+    
+      <category term="Eclipse" scheme="https://t1h0can.github.io/tags/Eclipse/"/>
+    
+  </entry>
   
   <entry>
     <title>Garmin开发入门(2)-项目结构分析与简单开发</title>
@@ -230,11 +268,11 @@
     </summary>
     
     
-      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
-    
       <category term="unix环境高级编程" scheme="https://t1h0can.github.io/tags/unix%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B/"/>
     
       <category term="笔记" scheme="https://t1h0can.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
     
   </entry>
   
@@ -335,9 +373,9 @@
     </summary>
     
     
-      <category term="git" scheme="https://t1h0can.github.io/tags/git/"/>
-    
       <category term="备忘" scheme="https://t1h0can.github.io/tags/%E5%A4%87%E5%BF%98/"/>
+    
+      <category term="git" scheme="https://t1h0can.github.io/tags/git/"/>
     
   </entry>
   
@@ -608,9 +646,9 @@
     
       <category term="android" scheme="https://t1h0can.github.io/tags/android/"/>
     
-      <category term="Kali" scheme="https://t1h0can.github.io/tags/Kali/"/>
-    
       <category term="安全" scheme="https://t1h0can.github.io/tags/%E5%AE%89%E5%85%A8/"/>
+    
+      <category term="Kali" scheme="https://t1h0can.github.io/tags/Kali/"/>
     
   </entry>
   
@@ -771,9 +809,9 @@
     </summary>
     
     
-      <category term="杂" scheme="https://t1h0can.github.io/tags/%E6%9D%82/"/>
-    
       <category term="test" scheme="https://t1h0can.github.io/tags/test/"/>
+    
+      <category term="杂" scheme="https://t1h0can.github.io/tags/%E6%9D%82/"/>
     
   </entry>
   
