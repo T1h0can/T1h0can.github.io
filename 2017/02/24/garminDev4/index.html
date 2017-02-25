@@ -6,21 +6,26 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://t1h0can.github.io">
-  <title>hello-world | T1h0can的博客</title>
+  <title>Garmin开发入门(4)-添加设置 | T1h0can的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="折腾了几天，看了好多人的教程，终于通过hexo在github上搭出自己的博客。。。还有不少问题没解决，功能没添加，慢慢来吧，先宣誓主权：
-Hello world!">
+  <meta name="description" content="这篇文章讲怎样给自己开发的app添加设置，按照Garmin官方的说法，设置对于表盘和数据字段这种没有方法获得用户输入的软件提供了一条很好的自定义途径。
+还是拿第一个表盘为例子，上次自定义了时间的字体和颜色，这次我希望时间的颜色选择能由用户自己决定，添加一个为时间字符选择颜色的设置就行。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello-world">
-<meta property="og:url" content="https://t1h0can.github.io/2016/11/10/hello-world/index.html">
+<meta property="og:title" content="Garmin开发入门(4)-添加设置">
+<meta property="og:url" content="https://t1h0can.github.io/2017/02/24/garminDev4/index.html">
 <meta property="og:site_name" content="T1h0can的博客">
-<meta property="og:description" content="折腾了几天，看了好多人的教程，终于通过hexo在github上搭出自己的博客。。。还有不少问题没解决，功能没添加，慢慢来吧，先宣誓主权：
-Hello world!">
-<meta property="og:updated_time" content="2016-11-15T18:41:38.000Z">
+<meta property="og:description" content="这篇文章讲怎样给自己开发的app添加设置，按照Garmin官方的说法，设置对于表盘和数据字段这种没有方法获得用户输入的软件提供了一条很好的自定义途径。
+还是拿第一个表盘为例子，上次自定义了时间的字体和颜色，这次我希望时间的颜色选择能由用户自己决定，添加一个为时间字符选择颜色的设置就行。">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/settings&strings&properties.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/zhuti.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/default.png">
+<meta property="og:image" content="https://t1h0can.github.io/assets/blogimg/custom.png">
+<meta property="og:updated_time" content="2017-02-25T06:17:21.368Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hello-world">
-<meta name="twitter:description" content="折腾了几天，看了好多人的教程，终于通过hexo在github上搭出自己的博客。。。还有不少问题没解决，功能没添加，慢慢来吧，先宣誓主权：
-Hello world!">
+<meta name="twitter:title" content="Garmin开发入门(4)-添加设置">
+<meta name="twitter:description" content="这篇文章讲怎样给自己开发的app添加设置，按照Garmin官方的说法，设置对于表盘和数据字段这种没有方法获得用户输入的软件提供了一条很好的自定义途径。
+还是拿第一个表盘为例子，上次自定义了时间的字体和颜色，这次我希望时间的颜色选择能由用户自己决定，添加一个为时间字符选择颜色的设置就行。">
+<meta name="twitter:image" content="https://t1h0can.github.io/assets/blogimg/settings&strings&properties.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -131,7 +136,7 @@ Hello world!">
 </nav>
 
       <div class="body-wrap">
-        <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-garminDev4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <input type="hidden" class="isFancy" />
@@ -141,7 +146,7 @@ Hello world!">
         
   
     <h1 class="article-title" itemprop="name">
-      hello-world
+      Garmin开发入门(4)-添加设置
     </h1>
   
 
@@ -149,20 +154,30 @@ Hello world!">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>折腾了几天，看了好多人的教程，终于通过hexo在github上搭出自己的博客。。。<br>还有不少问题没解决，功能没添加，慢慢来吧，先宣誓主权：</p>
-<p><strong>Hello world!</strong></p>
+        <p>这篇文章讲怎样给自己开发的app添加设置，按照Garmin官方的说法，设置对于表盘和数据字段这种没有方法获得用户输入的软件提供了一条很好的自定义途径。</p>
+<p>还是拿第一个表盘为例子，上次自定义了时间的字体和颜色，这次我希望时间的颜色选择能由用户自己决定，添加一个为时间字符选择颜色的设置就行。</p>
+<a id="more"></a>
+<p>应用设置由属性和与之相关联的设置组成，在<code>resources</code>文件夹下新建一个<code>settings</code>文件夹，在里面新建<code>settings.xml</code>和<code>properties.xml</code>两个文件，在新建的两个文件和<code>strings</code>文件夹下的<code>string.xml</code>中添加下面代码</p>
+<p><img src="/assets/blogimg/settings&amp;strings&amp;properties.png" alt="settings&amp;properties&amp;strings"></p>
+<p>大概解释一下这三个文件中的关系，就像图中画的箭头一样，设置的关键词<code>properties.xml</code>中定义，关键词就是属性，属性指向的各个选项在<code>settings.xml</code>中定义，由<code>propertykey</code>和关键词链接，而<code>title</code>指向的<code>strings.xml</code>文件中的字符串是实际在设置界面出现的关键词。</p>
+<p>再看看主程序中的变化，主要是<code>getColor</code>和<code>getDefaultProperty</code>两个函数，通过这两个函数和设置挂钩</p>
+<p><img src="/assets/blogimg/zhuti.png" alt="zhuti"></p>
+<p>接下来运行在模拟器中看效果，设置在主菜单<code>Connect IQ</code>下<code>App Setings Editor</code>,默认颜色我设置成了白色，设置改动后的效果是第二张图</p>
+<p><img src="/assets/blogimg/default.png" alt="default"><br><img src="/assets/blogimg/custom.png" alt="custom"></p>
+<p>我会把这个表盘开源，有兴趣研究和想知道主程序还有哪些细节变化的可以参考<br><a href="https://github.com/T1h0can/myFirstWatchFace" target="_blank" rel="external">mywatchface</a></p>
+<p>顺便吐槽一下Garmin反人类设置，编写好带设置的程序，直接发送到设备运行后在Connect软件或桌面端的Garmin Express上是不能设置的！！！！！！！！！但是！！！！！！！！！上传官方应用商店后再下载回设备，这时设置可见，WTF，什么逆天规定，怪不得在github翻别人代码时有人骂Garmin</p>
 
       
     </div>
     <div class="article-info article-info-index">
       
-      <a href="/2016/11/10/hello-world/" class="archive-article-date">
-  	<time datetime="2016-11-09T21:16:18.000Z" itemprop="datePublished"><i class="icon-clock"></i>2016-11-10</time>
+      <a href="/2017/02/24/garminDev4/" class="archive-article-date">
+  	<time datetime="2017-02-24T13:06:53.000Z" itemprop="datePublished"><i class="icon-clock"></i>2017-02-24</time>
 </a>
       
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂/">杂</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Eclipse/">Eclipse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Garmin/">Garmin</a></li></ul>
 	</div>
 
       
@@ -175,15 +190,11 @@ Hello world!">
   
 <nav id="article-nav">
   
-    <a href="/2016/11/10/memorandum/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          。。。
-        
-      </div>
-    </a>
   
+    <a href="/2017/02/24/garminDev3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Garmin开发入门(3)-图标字体偷梁换柱</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 

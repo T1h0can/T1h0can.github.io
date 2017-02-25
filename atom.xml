@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://t1h0can.github.io/"/>
-  <updated>2017-02-24T00:44:48.217Z</updated>
+  <updated>2017-02-25T06:17:21.368Z</updated>
   <id>https://t1h0can.github.io/</id>
   
   <author>
@@ -16,11 +16,46 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Garmin开发入门(4)-添加设置</title>
+    <link href="https://t1h0can.github.io/2017/02/24/garminDev4/"/>
+    <id>https://t1h0can.github.io/2017/02/24/garminDev4/</id>
+    <published>2017-02-24T13:06:53.000Z</published>
+    <updated>2017-02-25T06:17:21.368Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇文章讲怎样给自己开发的app添加设置，按照Garmin官方的说法，设置对于表盘和数据字段这种没有方法获得用户输入的软件提供了一条很好的自定义途径。</p>
+<p>还是拿第一个表盘为例子，上次自定义了时间的字体和颜色，这次我希望时间的颜色选择能由用户自己决定，添加一个为时间字符选择颜色的设置就行。</p>
+<a id="more"></a>
+<p>应用设置由属性和与之相关联的设置组成，在<code>resources</code>文件夹下新建一个<code>settings</code>文件夹，在里面新建<code>settings.xml</code>和<code>properties.xml</code>两个文件，在新建的两个文件和<code>strings</code>文件夹下的<code>string.xml</code>中添加下面代码</p>
+<p><img src="/assets/blogimg/settings&amp;strings&amp;properties.png" alt="settings&amp;properties&amp;strings"></p>
+<p>大概解释一下这三个文件中的关系，就像图中画的箭头一样，设置的关键词<code>properties.xml</code>中定义，关键词就是属性，属性指向的各个选项在<code>settings.xml</code>中定义，由<code>propertykey</code>和关键词链接，而<code>title</code>指向的<code>strings.xml</code>文件中的字符串是实际在设置界面出现的关键词。</p>
+<p>再看看主程序中的变化，主要是<code>getColor</code>和<code>getDefaultProperty</code>两个函数，通过这两个函数和设置挂钩</p>
+<p><img src="/assets/blogimg/zhuti.png" alt="zhuti"></p>
+<p>接下来运行在模拟器中看效果，设置在主菜单<code>Connect IQ</code>下<code>App Setings Editor</code>,默认颜色我设置成了白色，设置改动后的效果是第二张图</p>
+<p><img src="/assets/blogimg/default.png" alt="default"><br><img src="/assets/blogimg/custom.png" alt="custom"></p>
+<p>我会把这个表盘开源，有兴趣研究和想知道主程序还有哪些细节变化的可以参考<br><a href="https://github.com/T1h0can/myFirstWatchFace" target="_blank" rel="external">mywatchface</a></p>
+<p>顺便吐槽一下Garmin反人类设置，编写好带设置的程序，直接发送到设备运行后在Connect软件或桌面端的Garmin Express上是不能设置的！！！！！！！！！但是！！！！！！！！！上传官方应用商店后再下载回设备，这时设置可见，WTF，什么逆天规定，怪不得在github翻别人代码时有人骂Garmin</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇文章讲怎样给自己开发的app添加设置，按照Garmin官方的说法，设置对于表盘和数据字段这种没有方法获得用户输入的软件提供了一条很好的自定义途径。&lt;/p&gt;
+&lt;p&gt;还是拿第一个表盘为例子，上次自定义了时间的字体和颜色，这次我希望时间的颜色选择能由用户自己决定，添加一个为时间字符选择颜色的设置就行。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Garmin" scheme="https://t1h0can.github.io/tags/Garmin/"/>
+    
+      <category term="Eclipse" scheme="https://t1h0can.github.io/tags/Eclipse/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Garmin开发入门(3)-图标字体偷梁换柱</title>
     <link href="https://t1h0can.github.io/2017/02/24/garminDev3/"/>
     <id>https://t1h0can.github.io/2017/02/24/garminDev3/</id>
     <published>2017-02-23T23:33:18.000Z</published>
-    <updated>2017-02-24T00:44:48.217Z</updated>
+    <updated>2017-02-24T21:39:19.934Z</updated>
     
     <content type="html"><![CDATA[<p>上一篇里说到了自定义字体，在做表盘时添加的电池等图标也可以以字体的形式添加，网上很多现成的图标字体就可以为自己所用，但是不能直接显示，就要用到偷梁换柱之术。</p>
 <p>接着以第一个表盘为例，添加添加图标，并显示一些对应的信息。</p>
@@ -34,7 +69,7 @@
 <p><img src="/assets/blogimg/iconexample.png" alt="iconexample"></p>
 <p>写好的效果如图</p>
 <p><img src="/assets/blogimg/batteryicon.png" alt="battery"></p>
-<p>同理汉字也可以用这种方式显示，适用于不忍心为中文字库多付1000软妹币而选择了英文版的一些中文强迫症（这个群体太小了），具体实现的例子可以参考我的表盘“真正的粉丝”的代码</p>
+<p>同理汉字也可以用这种方式显示，适用于不忍心为中文字库多付1000软妹币而选择了英文版的一些中文强迫症（这个群体太小了），具体实现的例子可以参考我的表盘“真正的粉丝”的代码当然鉴于中文字数的庞大，这种方法只能有选择的现实一些字。</p>
 <p>续秒地址在此:<a href="https://github.com/T1h0can/realfans" target="_blank" rel="external">我为长者续一秒</a></p>
 <p><img src="/assets/blogimg/realfans.png" alt="realfans"></p>
 ]]></content>
