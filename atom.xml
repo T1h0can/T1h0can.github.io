@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://t1h0can.github.io/"/>
-  <updated>2017-02-25T06:17:21.368Z</updated>
+  <updated>2017-03-04T09:07:05.038Z</updated>
   <id>https://t1h0can.github.io/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>日常03.02</title>
+    <link href="https://t1h0can.github.io/2017/03/02/richang1/"/>
+    <id>https://t1h0can.github.io/2017/03/02/richang1/</id>
+    <published>2017-03-02T12:47:37.000Z</published>
+    <updated>2017-03-04T09:07:05.038Z</updated>
+    
+    <content type="html"><![CDATA[<p>朋友最近组织了一个俄语字幕组，翻译俄语mv，缺做时间轴的，我就简单的学了一下premiere加字幕啥的，好简单，根本不需要动脑子，就是手累。。。</p>
+<p><img src="/assets/blogimg/pr.png" alt="pr"></p>
+<p>做完的已经上传b站<br><a href="http://search.bilibili.com/all?keyword=%E5%B0%9A%E6%80%9D%E4%BF%84%E8%AF%AD%E5%AD%97%E5%B9%95%E7%BB%84" target="_blank" rel="external">链接</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;朋友最近组织了一个俄语字幕组，翻译俄语mv，缺做时间轴的，我就简单的学了一下premiere加字幕啥的，好简单，根本不需要动脑子，就是手累。。。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/blogimg/pr.png&quot; alt=&quot;pr&quot;&gt;&lt;/p&gt;
+&lt;p&gt;做完的已经上
+    
+    </summary>
+    
+    
+      <category term="杂" scheme="https://t1h0can.github.io/tags/%E6%9D%82/"/>
+    
+      <category term="日常" scheme="https://t1h0can.github.io/tags/%E6%97%A5%E5%B8%B8/"/>
+    
+  </entry>
   
   <entry>
     <title>Garmin开发入门(4)-添加设置</title>
@@ -93,9 +120,10 @@
     <link href="https://t1h0can.github.io/2017/02/23/garminDev2/"/>
     <id>https://t1h0can.github.io/2017/02/23/garminDev2/</id>
     <published>2017-02-23T16:58:25.000Z</published>
-    <updated>2017-02-23T19:04:02.106Z</updated>
+    <updated>2017-03-03T01:34:08.069Z</updated>
     
-    <content type="html"><![CDATA[<p>第一篇中已经配置好了开发环境，新建了一个项目，并且看到了运行的效果。这回分析一下项目的结构，再进行一下简单的开发。</p>
+    <content type="html"><![CDATA[<p><strong>我没系统的学过c以外的语言，我对于后面代码的理解还是基于c的思维，可能会有描述不准确的地方</strong></p>
+<p>第一篇中已经配置好了开发环境，新建了一个项目，并且看到了运行的效果。这回分析一下项目的结构，再进行一下简单的开发。</p>
 <h1 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h1><p><img src="/assets/blogimg/projectExplorer.png" alt="projectexplorer"></p>
 <a id="more"></a>
 <p>如图，</p>
@@ -159,7 +187,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;第一篇中已经配置好了开发环境，新建了一个项目，并且看到了运行的效果。这回分析一下项目的结构，再进行一下简单的开发。&lt;/p&gt;
+      &lt;p&gt;&lt;strong&gt;我没系统的学过c以外的语言，我对于后面代码的理解还是基于c的思维，可能会有描述不准确的地方&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;第一篇中已经配置好了开发环境，新建了一个项目，并且看到了运行的效果。这回分析一下项目的结构，再进行一下简单的开发。&lt;/p&gt;
 &lt;h1 id=&quot;结构&quot;&gt;&lt;a href=&quot;#结构&quot; class=&quot;headerlink&quot; title=&quot;结构&quot;&gt;&lt;/a&gt;结构&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/assets/blogimg/projectExplorer.png&quot; alt=&quot;projectexplorer&quot;&gt;&lt;/p&gt;
     
     </summary>
